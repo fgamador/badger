@@ -1,0 +1,29 @@
+<h1>Listing scouts</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Birthday</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @scouts.each do |scout| %>
+  <tr>
+    <td><%= scout.first_name %></td>
+    <td><%= scout.last_name %></td>
+    <td><%= scout.birthday %></td>
+    <td><%= scout.active %></td>
+    <td><%= link_to 'Show', scout %></td>
+    <td><%= link_to 'Edit', edit_scout_path(scout) %></td>
+    <td><%= link_to 'Destroy', scout, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Scout', new_scout_path %>
