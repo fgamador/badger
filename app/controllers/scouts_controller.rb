@@ -2,6 +2,7 @@ class ScoutsController < ApplicationController
   # GET /scouts
   # GET /scouts.xml
   def index
+    @title = "Scouts"
     @scouts = Scout.all
 
     respond_to do |format|

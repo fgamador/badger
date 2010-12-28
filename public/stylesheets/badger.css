@@ -1,0 +1,29 @@
+nav ul {
+  text-align: center;
+}
+
+nav ul li {
+  background-color: #DDD;
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0.1em 0.5em;
+  font-size: 120%;
+}
+
+a, a:hover, a:visited {
+  background-color: #DDD;
+  color: #00A;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.flash-notice {
+  color: green;
+}
