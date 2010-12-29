@@ -1,6 +1,7 @@
 class ScoutsController < ApplicationController
 #  before_filter :authenticate, :except => [:index, :show]
-#  before_filter :check_authentication
+  before_filter :authenticate
+  before_filter :check_authentication
   before_filter :find_scout, :only => [:show, :edit, :update, :destroy]
 
   def login
