@@ -1,5 +1,24 @@
 Badger::Application.routes.draw do
-  resources :scouts
+#  map.resources :court_of_honors
+#  map.resources :merit_badges
+#  map.resources :outings do |outing|
+#    outing.resources :outing_awards
+#    outing.resources :scout_outings
+#  end
+#  map.resources :ranks
+#  map.resources :awards
+#  map.resources :scouts, :collection => { :login => :get } do |scout|
+#    scout.resources :scout_awards
+#    scout.resources :scout_merit_badges
+#    scout.resources :scout_outings
+#    scout.resources :scout_ranks
+#  end
+
+  resources :scouts do
+    collection do
+      get 'login'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

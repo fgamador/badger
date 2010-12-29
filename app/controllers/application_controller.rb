@@ -7,13 +7,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def authenticate
-    authenticate_or_request_with_http_basic do |username, password|
-      session[:admin] = admin = (username == ADMIN_LOGIN && password == ADMIN_PASSWORD)
-      admin || (username == LOGIN && password == PASSWORD)
+    authenticate_or_request_with_http_basic("Badger") do |username, password|
+      username == LOGIN && password == PASSWORD
     end
   end
 
-  def check_authentication
+  def authenticate_admin
+    authenticate_or_request_with_http_basic("Badger Admin") do |username, password|
+      session[:admin] = (username == ADMIN_LOGIN && password == ADMIN_PASSWORD)
+    end
+  end
+
+  def check_admin
     @is_admin ||= session[:admin]
   end
 
