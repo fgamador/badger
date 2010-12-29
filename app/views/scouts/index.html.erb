@@ -1,29 +1,37 @@
-<h1>Listing scouts</h1>
+<h1>Scouts</h1>
 
-<table>
+<table class="listing">
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
+    <th>Name</th>
+    <!--
+    <th>Rank</th>
+    <th>Merit Badges</th>
+    <th>Nights of Camping</th>
+    -->
     <th>Birthday</th>
     <th>Active</th>
-    <th></th>
-    <th></th>
-    <th></th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_scout_path %></td>
+  <% end %>
   </tr>
 
 <% @scouts.each do |scout| %>
   <tr>
-    <td><%= scout.first_name %></td>
-    <td><%= scout.last_name %></td>
+    <td><%= link_to scout.name, scout %></td>
+    <!--
+    <td>< %= scout.rank ? (link_to scout.rank.name, scout.rank) : "" %></td>
+    < % td_merit_badge_counts(scout) %>
+    < % td_nights_of_camping_counts(scout) %>
+    -->
     <td><%= scout.birthday %></td>
     <td><%= scout.active %></td>
-    <td><%= link_to 'Show', scout %></td>
-    <td><%= link_to 'Edit', edit_scout_path(scout) %></td>
-    <td><%= link_to 'Destroy', scout, :confirm => 'Are you sure?', :method => :delete %></td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_scout_path(scout) %>
+      <%= link_to 'Delete', scout, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Scout', new_scout_path %>

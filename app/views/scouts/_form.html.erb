@@ -21,13 +21,18 @@
   </div>
   <div class="field">
     <%= f.label :birthday %><br />
-    <%= f.date_select :birthday %>
+    <%= f.date_select :birthday,
+      :start_year => Time.now.year - 20, :end_year => Time.now.year - 10 %>
   </div>
   <div class="field">
     <%= f.label :active %><br />
     <%= f.check_box :active %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save", :name => "save" %>
+    <% if use_save_and_new %>
+      <%= f.submit "Save and New", :name => "save_and_new" %>
+    <% end %>
   </div>
 <% end %>
+

@@ -1,6 +1,4 @@
-<h1>Editing scout</h1>
+<h1>Editing <%= link_to (h @scout.name), @scout %></h1>
 
-<%= render 'form' %>
+<%= render :partial => "form", :locals => { :use_save_and_new => false } %>
 
-<%= link_to 'Show', @scout %> |
-<%= link_to 'Back', scouts_path %>

@@ -1,25 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h1><%=h @scout.name %></h1>
 
-<p>
-  <b>First name:</b>
-  <%= @scout.first_name %>
-</p>
+<table class="detail">
+  <tr>
+    <!--
+    <th>Rank:</th>
+    <td>< %= @scout.rank ? (@scout.rank.name) : "" %></td>
+    <th>Merit badges:</th>
+    < % td_merit_badge_counts(@scout) %>
+    <th>Nights of camping:</th>
+    < % td_nights_of_camping_counts(@scout) %>
+    -->
+    <th>Birthday:</th>
+    <td><%= @scout.birthday %></td>
+    <th><%= @scout.active ? "Active" : "Inactive" %></th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Edit', edit_scout_path(@scout) %></td>
+  <% end %>
+  </tr>
+</table>
 
-<p>
-  <b>Last name:</b>
-  <%= @scout.last_name %>
-</p>
-
-<p>
-  <b>Birthday:</b>
-  <%= @scout.birthday %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%= @scout.active %>
-</p>
-
-
-<%= link_to 'Edit', edit_scout_path(@scout) %> |
-<%= link_to 'Back', scouts_path %>

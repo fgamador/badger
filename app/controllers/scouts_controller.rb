@@ -1,84 +1,57 @@
 class ScoutsController < ApplicationController
-  # GET /scouts
-  # GET /scouts.xml
+#  before_filter :authenticate, :except => [:index, :show]
+#  before_filter :check_authentication
+  before_filter :find_scout, :only => [:show, :edit, :update, :destroy]
+
+  def login
+    redirect_to(scouts_url)
+  end
+
   def index
     @title = "Scouts"
-    @scouts = Scout.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @scouts }
-    end
+    @scouts = Scout.all.sort
   end
 
-  # GET /scouts/1
-  # GET /scouts/1.xml
   def show
-    @scout = Scout.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @scout }
-    end
+    @title = @scout.name
   end
 
-  # GET /scouts/new
-  # GET /scouts/new.xml
   def new
+    @title = "New scout"
     @scout = Scout.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @scout }
-    end
   end
 
-  # GET /scouts/1/edit
   def edit
-    @scout = Scout.find(params[:id])
+    @title = "Edit " + @scout.name
   end
 
-  # POST /scouts
-  # POST /scouts.xml
   def create
     @scout = Scout.new(params[:scout])
-
-    respond_to do |format|
-      if @scout.save
-        format.html { redirect_to(@scout, :notice => 'Scout was successfully created.') }
-        format.xml  { render :xml => @scout, :status => :created, :location => @scout }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @scout.errors, :status => :unprocessable_entity }
-      end
+    if @scout.save
+      redir_url = params[:save_and_new] ? new_scout_url : scouts_url
+      redirect_to(redir_url, :notice => "Scout was successfully created.")
+    else
+      render :action => "new"
     end
   end
 
-  # PUT /scouts/1
-  # PUT /scouts/1.xml
   def update
-    @scout = Scout.find(params[:id])
-
-    respond_to do |format|
-      if @scout.update_attributes(params[:scout])
-        format.html { redirect_to(@scout, :notice => 'Scout was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @scout.errors, :status => :unprocessable_entity }
-      end
+    if @scout.update_attributes(params[:scout])
+      redirect_to(@scout, :notice => "Scout was successfully updated.")
+    else
+      render :action => "edit"
     end
   end
 
-  # DELETE /scouts/1
-  # DELETE /scouts/1.xml
   def destroy
-    @scout = Scout.find(params[:id])
     @scout.destroy
+    redirect_to(scouts_url)
+  end
 
-    respond_to do |format|
-      format.html { redirect_to(scouts_url) }
-      format.xml  { head :ok }
-    end
+  private
+
+  def find_scout
+    @scout = Scout.find(params[:id])
   end
 end
+
