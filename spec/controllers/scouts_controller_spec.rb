@@ -3,6 +3,10 @@ require 'spec_helper'
 describe ScoutsController do
   render_views
 
+  before(:each) do
+    add_authentication_credentials
+  end
+
   describe "GET 'index'" do
     it "should be successful" do
       get 'index'
@@ -16,3 +20,4 @@ describe ScoutsController do
     end
   end
 end
+

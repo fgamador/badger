@@ -19,3 +19,4 @@ describe Scout do
     scout.should_not be_valid
   end
 end
+
