@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :birthday %><br />
-    <%= f.date_select :birthday,
+    <%= f.date_select :birthday, :include_blank => true,
       :start_year => Time.now.year - 20, :end_year => Time.now.year - 10 %>
   </div>
   <div class="field">
