@@ -1,6 +1,6 @@
 class ScoutsController < ApplicationController
-  before_filter :authenticate, :only => [:index, :show]
-  before_filter :authenticate_admin, :except => [:index, :show]
+  before_filter :authenticate, :only => [:index, :show, :show_inactive, :hide_inactive]
+  before_filter :authenticate_admin, :except => [:index, :show, :show_inactive, :hide_inactive]
   before_filter :cache_session_vars
   before_filter :find_scout, :only => [:show, :edit, :update, :destroy]
 
