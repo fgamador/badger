@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     return true if config.login.blank?
 
     authenticate_or_request_with_http_basic("Badger") do |login, password|
-      config.is_viewer?(login, password)
+      config.viewer?(login, password)
     end
   end
 
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     return true if config.admin_login.blank?
 
     authenticate_or_request_with_http_basic("Badger Admin") do |login, password|
-      config.is_admin?(login, password)
+      config.admin?(login, password)
     end
   end
 
@@ -23,14 +23,23 @@ class ApplicationController < ActionController::Base
     session[:admin_mode] = val
   end
 
-  def check_admin_mode
-    @is_admin_mode ||= session[:admin_mode]
+  def set_show_inactive(val)
+    session[:show_inactive] = val
   end
 
-  helper_method :admin?
+  def cache_session_vars
+    @admin_mode ||= session[:admin_mode]
+    @show_inactive ||= session[:show_inactive]
+  end
+
+  helper_method :admin?, :show_inactive?
 
   def admin?
-    @is_admin_mode
+    @admin_mode
+  end
+
+  def show_inactive?
+    @show_inactive
   end
 end
 

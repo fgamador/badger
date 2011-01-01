@@ -1,12 +1,12 @@
 class ScoutsController < ApplicationController
   before_filter :authenticate, :only => [:index, :show]
   before_filter :authenticate_admin, :except => [:index, :show]
-  before_filter :check_admin_mode
+  before_filter :cache_session_vars
   before_filter :find_scout, :only => [:show, :edit, :update, :destroy]
 
   def index
     @title = "Scouts"
-    @scouts = Scout.all.sort
+    @scouts = show_inactive? ? Scout.all.sort : Scout.where("active = ?", true).all.sort
   end
 
   def show
@@ -62,6 +62,16 @@ class ScoutsController < ApplicationController
 
   def view_mode
     set_admin_mode(false)
+    redirect_to(scouts_url)
+  end
+
+  def show_inactive
+    set_show_inactive(true)
+    redirect_to(scouts_url)
+  end
+
+  def hide_inactive
+    set_show_inactive(false)
     redirect_to(scouts_url)
   end
 

@@ -22,11 +22,11 @@ class BadgerConfig < ActiveRecord::Base
   validates :admin_password, :confirmation => true
   before_update :hash_passwords
 
-  def is_viewer?(login, password)
+  def viewer?(login, password)
     login == self.login && hash_password(password) == hashed_password
   end
 
-  def is_admin?(login, password)
+  def admin?(login, password)
     login == self.admin_login && hash_password(password) == hashed_admin_password
   end
 
