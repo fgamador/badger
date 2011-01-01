@@ -17,7 +17,8 @@ Badger::Application.routes.draw do
   resources :badger_configs
   resources :scouts do
     collection do
-      get 'login'
+      get 'admin_mode'
+      get 'view_mode'
     end
   end
 

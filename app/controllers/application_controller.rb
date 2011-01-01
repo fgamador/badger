@@ -12,21 +12,25 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin
     config = BadgerConfig.first
-    return session[:admin] = true if config.admin_login.blank?
+    return true if config.admin_login.blank?
 
     authenticate_or_request_with_http_basic("Badger Admin") do |login, password|
-      session[:admin] = config.is_admin?(login, password)
+      config.is_admin?(login, password)
     end
   end
 
-  def check_admin
-    @is_admin ||= session[:admin]
+  def set_admin_mode(val)
+    session[:admin_mode] = val
+  end
+
+  def check_admin_mode
+    @is_admin_mode ||= session[:admin_mode]
   end
 
   helper_method :admin?
 
   def admin?
-    @is_admin
+    @is_admin_mode
   end
 end
 
