@@ -27,6 +27,9 @@
           <li><%= link_to "Outings", '#' %></li>
           <li><%= link_to "Courts of Honor", '#' %></li>
           <li><%= link_to "Admin", login_scouts_path %></li>
+        <% if admin? %>
+          <li><%= link_to "Setup", (edit_badger_config_path BadgerConfig.first) %></li>
+        <% end %>
         </ul>
       </nav>
     </header>

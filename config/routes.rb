@@ -14,6 +14,7 @@ Badger::Application.routes.draw do
 #    scout.resources :scout_ranks
 #  end
 
+  resources :badger_configs
   resources :scouts do
     collection do
       get 'login'

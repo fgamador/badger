@@ -1,0 +1,42 @@
+<%= form_for(@badger_config) do |f| %>
+  <% if @badger_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@badger_config.errors.count, "error") %> prohibited this configuration from being saved:</h2>
+
+      <ul>
+      <% @badger_config.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_login %><br />
+    <%= f.text_field :admin_login %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_password %><br />
+    <%= f.password_field :admin_password %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_password_confirmation %><br />
+    <%= f.password_field :admin_password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save", :name => "save" %>
+  </div>
+<% end %>
+

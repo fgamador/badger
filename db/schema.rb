@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101225051824) do
+ActiveRecord::Schema.define(:version => 20101231013352) do
+
+  create_table "badger_configs", :force => true do |t|
+    t.string   "login"
+    t.string   "hashed_password"
+    t.string   "admin_login"
+    t.string   "hashed_admin_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "scouts", :force => true do |t|
     t.string   "first_name"
