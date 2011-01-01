@@ -45,12 +45,27 @@ describe BadgerConfig do
       @config.hashed_admin_password.should_not == @config.admin_password
     end
 
-    it "should cope with empty passwords" do
+    it "should cope with initially empty passwords" do
       @config.password = nil
       @config.password_confirmation = nil
       @config.admin_password = nil
       @config.admin_password_confirmation = nil
       @config.save!
+    end
+
+    it "should return old passwords on new empty passwords" do
+      @config.save!
+      hashed_password = @config.hashed_password
+      hashed_admin_password = @config.hashed_admin_password
+
+      @config.password = nil
+      @config.password_confirmation = nil
+      @config.admin_password = ""
+      @config.admin_password_confirmation = ""
+      @config.save!
+
+      @config.hashed_password.should == hashed_password
+      @config.hashed_admin_password.should == hashed_admin_password
     end
   end
 

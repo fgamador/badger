@@ -33,12 +33,12 @@ class BadgerConfig < ActiveRecord::Base
   private
 
   def hash_passwords
-    self.hashed_password = hash_password(password)
-    self.hashed_admin_password = hash_password(admin_password)
+    self.hashed_password = hash_password(password, hashed_password)
+    self.hashed_admin_password = hash_password(admin_password, hashed_admin_password)
   end
 
-  def hash_password(password)
-    password ? Digest::SHA2.hexdigest(password) : ""
+  def hash_password(password, default_password = "")
+    password.blank? ? default_password : Digest::SHA2.hexdigest(password)
   end
 end
 

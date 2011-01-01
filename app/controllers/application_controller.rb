@@ -1,20 +1,21 @@
 class ApplicationController < ActionController::Base
-  LOGIN = "trustworthy"
-  PASSWORD = "loyal"
-  ADMIN_LOGIN = "troop20"
-  ADMIN_PASSWORD = "Trustworthy2"
-
   protect_from_forgery
 
   def authenticate
-    authenticate_or_request_with_http_basic("Badger") do |username, password|
-      username == LOGIN && password == PASSWORD
+    config = BadgerConfig.first
+    return true if config.login.blank?
+
+    authenticate_or_request_with_http_basic("Badger") do |login, password|
+      config.is_viewer?(login, password)
     end
   end
 
   def authenticate_admin
-    authenticate_or_request_with_http_basic("Badger Admin") do |username, password|
-      session[:admin] = (username == ADMIN_LOGIN && password == ADMIN_PASSWORD)
+    config = BadgerConfig.first
+    return session[:admin] = true if config.admin_login.blank?
+
+    authenticate_or_request_with_http_basic("Badger Admin") do |login, password|
+      session[:admin] = config.is_admin?(login, password)
     end
   end
 
