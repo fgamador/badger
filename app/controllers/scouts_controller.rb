@@ -23,6 +23,11 @@ class ScoutsController < ApplicationController
   end
 
   def create
+    if params[:cancel]
+      redirect_to(scouts_url)
+      return
+    end
+
     @scout = Scout.new(params[:scout])
     if @scout.save
       redir_url = params[:save_and_new] ? new_scout_url : scouts_url
@@ -33,6 +38,11 @@ class ScoutsController < ApplicationController
   end
 
   def update
+    if params[:cancel]
+      redirect_to(@scout)
+      return
+    end
+
     if @scout.update_attributes(params[:scout])
       redirect_to(@scout, :notice => "Scout was successfully updated.")
     else
