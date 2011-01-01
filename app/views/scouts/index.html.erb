@@ -25,12 +25,6 @@
     -->
     <td><%= scout.birthday %></td>
     <td><%= scout.active %></td>
-  <% if admin? %>
-    <td class="actions">
-      <%= link_to 'Edit', edit_scout_path(scout) %>
-      <%= link_to 'Delete', scout, :confirm => 'Are you sure?', :method => :delete %>
-    </td>
-  <% end %>
   </tr>
 <% end %>
 </table>

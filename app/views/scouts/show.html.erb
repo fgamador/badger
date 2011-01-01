@@ -14,7 +14,13 @@
     <td><%= @scout.birthday %></td>
     <th><%= @scout.active ? "Active" : "Inactive" %></th>
   <% if admin? %>
-    <td class="actions"><%= link_to 'Edit', edit_scout_path(@scout) %></td>
+    <td class="actions">
+      <%= link_to 'Edit', edit_scout_path(@scout) %>
+    <% unless @scout.active? %>
+      <%= link_to 'Delete', @scout,
+        :confirm => "This will DELETE ALL RECORD of #{@scout.name}.", :method => :delete %>
+    <% end %>
+    </td>
   <% end %>
   </tr>
 </table>
