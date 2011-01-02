@@ -15,6 +15,7 @@ Badger::Application.routes.draw do
 #  end
 
   resources :badger_configs
+  resources :ranks
   resources :scouts do
     collection do
       get 'admin_mode'

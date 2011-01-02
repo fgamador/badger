@@ -1,0 +1,33 @@
+<h1>Ranks</h1>
+
+<table class="listing">
+  <tr>
+    <th>Name</th>
+<!--
+    <th>Scouts</th>
+-->
+  <% if admin? %>
+    <th>Ordinal</th>
+  <% end %>
+    <th>Merit badges</th>
+    <th>Eagle-required badges</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_rank_path %></td>
+  <% end %>
+  </tr>
+
+<% @ranks.each do |rank| %>
+  <tr>
+    <td><%= link_to rank.name, rank %></td>
+<!--
+    <td>< %=h rank.num_active_scouts %></td>
+-->
+  <% if admin? %>
+    <td><%=h rank.ordinal %></td>
+  <% end %>
+    <td><%=h rank.num_merit_badges %></td>
+    <td><%=h rank.num_eagle_required %></td>
+  </tr>
+<% end %>
+</table>
+

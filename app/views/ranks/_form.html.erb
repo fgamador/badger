@@ -1,0 +1,38 @@
+<%= form_for(@rank) do |f| %>
+  <% if @rank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rank.errors.count, "error") %> prohibited this rank from being saved:</h2>
+
+      <ul>
+      <% @rank.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :ordinal %><br />
+    <%= f.text_field :ordinal %>
+  </div>
+  <div class="field">
+    <%= f.label :num_merit_badges %><br />
+    <%= f.text_field :num_merit_badges %>
+  </div>
+  <div class="field">
+    <%= f.label :num_eagle_required %><br />
+    <%= f.text_field :num_eagle_required %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save", :name => "save" %>
+    <% if use_save_and_new %>
+      <%= f.submit "Save & New", :name => "save_and_new" %>
+    <% end %>
+    <%= f.submit "Cancel", :name => "cancel" %>
+  </div>
+<% end %>
+

@@ -1,0 +1,28 @@
+<h1><%= @rank.name %> Rank</h1>
+
+<table class="detail">
+  <tr>
+<!--
+    <th>Scouts:</th>
+    <td>< %= @rank.num_active_scouts %></td>
+-->
+  <% if admin? %>
+    <th>Ordinal:</th>
+    <td><%= @rank.ordinal %></td>
+  <% end %>
+    <th>Merit badges:</th>
+    <td><%= @rank.num_merit_badges %></td>
+    <th>Eagle-required badges:</th>
+    <td><%= @rank.num_eagle_required %></td>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Edit', edit_rank_path(@rank) %></td>
+<!--
+    < % if @rank.unused? %>
+      < %= link_to 'Delete', @scout,
+        :confirm => "Delete unused #{@rank.name} rank?", :method => :delete %>
+    < % end %>
+-->
+  <% end %>
+  </tr>
+</table>
+
