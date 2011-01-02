@@ -20,13 +20,13 @@
   <tr>
     <td><%= link_to rank.name, rank %></td>
 <!--
-    <td>< %=h rank.num_active_scouts %></td>
+    <td>< %= rank.num_active_scouts %></td>
 -->
   <% if admin? %>
-    <td><%=h rank.ordinal %></td>
+    <td><%= rank.ordinal %></td>
   <% end %>
-    <td><%=h rank.num_merit_badges %></td>
-    <td><%=h rank.num_eagle_required %></td>
+    <td><%= rank.num_merit_badges %></td>
+    <td><%= rank.num_eagle_required %></td>
   </tr>
 <% end %>
 </table>
