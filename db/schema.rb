@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110102005321) do
+ActiveRecord::Schema.define(:version => 20110102013904) do
 
   create_table "badger_configs", :force => true do |t|
     t.string   "login"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20110102005321) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "merit_badges", :force => true do |t|
+    t.string   "name"
+    t.boolean  "eagle_required"
+    t.integer  "group_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "merit_badges", ["name"], :name => "mb_by_name", :unique => true
 
   create_table "ranks", :force => true do |t|
     t.string   "name"

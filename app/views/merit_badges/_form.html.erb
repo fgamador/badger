@@ -1,0 +1,34 @@
+<%= form_for(@merit_badge) do |f| %>
+  <% if @merit_badge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@merit_badge.errors.count, "error") %> prohibited this merit badge from being saved:</h2>
+
+      <ul>
+      <% @merit_badge.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :eagle_required %><br />
+    <%= f.check_box :eagle_required %>
+  </div>
+  <div class="field">
+    <%= f.label :group_number %><br />
+    <%= f.text_field :group_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save", :name => "save" %>
+    <% if use_save_and_new %>
+      <%= f.submit "Save & New", :name => "save_and_new" %>
+    <% end %>
+    <%= f.submit "Cancel", :name => "cancel" %>
+  </div>
+<% end %>
+
