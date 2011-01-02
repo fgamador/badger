@@ -1,16 +1,5 @@
 <%= form_for(@merit_badge) do |f| %>
-  <% if @merit_badge.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@merit_badge.errors.count, "error") %> prohibited this merit badge from being saved:</h2>
-
-      <ul>
-      <% @merit_badge.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <% form_error_messages(@merit_badge, "merit badge") %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -23,12 +12,6 @@
     <%= f.label :group_number %><br />
     <%= f.text_field :group_number %>
   </div>
-  <div class="actions">
-    <%= f.submit "Save", :name => "save" %>
-    <% if use_save_and_new %>
-      <%= f.submit "Save & New", :name => "save_and_new" %>
-    <% end %>
-    <%= f.submit "Cancel", :name => "cancel" %>
-  </div>
+  <% form_submit_buttons(f, use_save_and_new) %>
 <% end %>
 

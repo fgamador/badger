@@ -1,16 +1,5 @@
 <%= form_for(@badger_config) do |f| %>
-  <% if @badger_config.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@badger_config.errors.count, "error") %> prohibited this configuration from being saved:</h2>
-
-      <ul>
-      <% @badger_config.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <% form_error_messages(@badger_config, "configuration") %>
   <div class="field">
     <%= f.label :login %><br />
     <%= f.text_field :login %>
