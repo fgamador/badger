@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110104044942) do
+ActiveRecord::Schema.define(:version => 20110104050741) do
 
   create_table "awards", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(:version => 20110104044942) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "court_of_honors", :force => true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.boolean  "eagle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "court_of_honors", ["date"], :name => "coh_by_date", :unique => true
+  add_index "court_of_honors", ["name"], :name => "coh_by_name", :unique => true
 
   create_table "merit_badges", :force => true do |t|
     t.string   "name"

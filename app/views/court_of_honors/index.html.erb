@@ -1,0 +1,29 @@
+<h1>Courts of Honor</h1>
+
+<table class="listing">
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Eagle</th>
+<!--
+    <th>Ranks</th>
+    <th>Merit Badges</th>
+-->
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_court_of_honor_path %></td>
+  <% end %>
+  </tr>
+
+<% for court_of_honor in @court_of_honors %>
+  <tr>
+    <td><%= link_to court_of_honor.name, court_of_honor %></td>
+    <td><%= court_of_honor.date %></td>
+    <td><%= court_of_honor.eagle %></td>
+<!--
+    <td>< %= court_of_honor.scout_ranks.count %></td>
+    <td>< %= court_of_honor.scout_merit_badges.count %></td>
+-->
+  </tr>
+<% end %>
+</table>
+

@@ -16,6 +16,7 @@ Badger::Application.routes.draw do
 
   resources :awards
   resources :badger_configs
+  resources :court_of_honors
   resources :merit_badges
   resources :outings
   resources :ranks

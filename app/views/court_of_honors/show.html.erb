@@ -1,0 +1,21 @@
+<h1><%= @court_of_honor.name %> Court of Honor</h1>
+
+<table class="detail">
+  <tr>
+    <th>Date:</th>
+    <td><%= @court_of_honor.date %></td>
+  <% if @court_of_honor.eagle %>
+    <th>Eagle</th>
+  <% end %>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Edit', edit_court_of_honor_path(@court_of_honor) %></td>
+<!--
+    < % if @court_of_honor.unused? %>
+      < %= link_to 'Delete', @court_of_honor,
+        :confirm => "Delete unused #{@court_of_honor.name}?", :method => :delete %>
+    < % end %>
+-->
+  <% end %>
+  </tr>
+</table>
+
