@@ -14,6 +14,7 @@ Badger::Application.routes.draw do
 #    scout.resources :scout_ranks
 #  end
 
+  resources :awards
   resources :badger_configs
   resources :merit_badges
   resources :ranks

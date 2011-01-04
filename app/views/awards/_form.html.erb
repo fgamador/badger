@@ -1,0 +1,7 @@
+<%= form_for(@award) do |f| %>
+  <% form_error_messages(@award, "award") %>
+  <% form_text_field(f, :name) %>
+  <% form_check_box(f, :one_per_scout) %>
+  <% form_submit_buttons(f, use_save_and_new) %>
+<% end %>
+

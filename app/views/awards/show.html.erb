@@ -1,0 +1,17 @@
+<h1><%= @award.name %> Award</h1>
+
+<table class="detail">
+  <tr>
+    <th><%= @award.one_per_scout ? "One per scout" : "Unlimited" %></th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Edit', edit_award_path(@award) %></td>
+<!--
+    < % if @award.unused? %>
+      < %= link_to 'Delete', @award,
+        :confirm => "Delete unused #{@award.name} merit badge?", :method => :delete %>
+    < % end %>
+-->
+  <% end %>
+  </tr>
+</table>
+

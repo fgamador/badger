@@ -1,0 +1,24 @@
+<h1>Awards</h1>
+
+<table class="listing">
+  <tr>
+    <th>Name</th>
+<!--
+    <th>Scouts</th>
+-->
+  <% if admin? %>
+    <th>Group Number</th>
+    <td class="actions"><%= link_to 'Add', new_award_path %></td>
+  <% end %>
+  </tr>
+
+<% for award in @awards %>
+  <tr>
+    <td><%= link_to award.name, award %></td>
+<!--
+    <td>< %= award.num_active_scouts %></td>
+-->
+  </tr>
+<% end %>
+</table>
+
