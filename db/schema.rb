@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110102233009) do
+ActiveRecord::Schema.define(:version => 20110104044942) do
 
   create_table "awards", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(:version => 20110102233009) do
   end
 
   add_index "merit_badges", ["name"], :name => "mb_by_name", :unique => true
+
+  create_table "outings", :force => true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.integer  "nights_of_camping", :default => 1
+    t.boolean  "long_term_camp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "outings", ["name"], :name => "outing_by_name", :unique => true
 
   create_table "ranks", :force => true do |t|
     t.string   "name"
