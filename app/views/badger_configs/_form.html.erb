@@ -1,29 +1,11 @@
 <%= form_for(@badger_config) do |f| %>
   <% form_error_messages(@badger_config, "configuration") %>
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_login %><br />
-    <%= f.text_field :admin_login %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_password %><br />
-    <%= f.password_field :admin_password %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_password_confirmation %><br />
-    <%= f.password_field :admin_password_confirmation %>
-  </div>
+  <% form_text_field(f, :login) %>
+  <% form_password_field(f, :password) %>
+  <% form_password_field(f, :password_confirmation) %>
+  <% form_text_field(f, :admin_login) %>
+  <% form_password_field(f, :admin_password) %>
+  <% form_password_field(f, :admin_password_confirmation) %>
   <div class="actions">
     <%= f.submit "Save", :name => "save" %>
   </div>

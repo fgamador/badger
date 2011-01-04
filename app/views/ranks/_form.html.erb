@@ -1,21 +1,9 @@
 <%= form_for(@rank) do |f| %>
   <% form_error_messages(@rank, "rank") %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :ordinal %><br />
-    <%= f.text_field :ordinal %>
-  </div>
-  <div class="field">
-    <%= f.label :num_merit_badges %><br />
-    <%= f.text_field :num_merit_badges %>
-  </div>
-  <div class="field">
-    <%= f.label :num_eagle_required %><br />
-    <%= f.text_field :num_eagle_required %>
-  </div>
+  <% form_text_field(f, :name) %>
+  <% form_text_field(f, :ordinal) %>
+  <% form_text_field(f, :num_merit_badges) %>
+  <% form_text_field(f, :num_eagle_required) %>
   <% form_submit_buttons(f, use_save_and_new) %>
 <% end %>
 

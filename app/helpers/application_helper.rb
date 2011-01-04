@@ -20,6 +20,14 @@ module ApplicationHelper
     safe_concat "</div>"
   end
 
+  def form_password_field(f, field_symbol)
+    safe_concat "<div class='field'>"
+    safe_concat f.label(field_symbol)
+    safe_concat "<br />"
+    safe_concat f.password_field(field_symbol)
+    safe_concat "</div>"
+  end
+
   def form_text_field(f, field_symbol)
     safe_concat "<div class='field'>"
     safe_concat f.label(field_symbol)
