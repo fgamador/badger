@@ -1,4 +1,4 @@
-class @entityClasssController < ApplicationController
+class EntityController < ApplicationController
   before_filter :authenticate, :only => [:index, :show]
   before_filter :authenticate_admin, :except => [:index, :show]
   before_filter :cache_session_vars
