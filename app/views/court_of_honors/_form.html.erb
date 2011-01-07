@@ -1,7 +1,8 @@
 <%= form_for(@court_of_honor) do |f| %>
   <% form_error_messages(@court_of_honor, "Court of Honor") %>
   <% form_text_field(f, :name) %>
-  <% form_date_select(f, :date) %>
+  <% form_date_select(f, :date,
+    :start_year => Time.now.year - 10, :end_year => Time.now.year + 1) %>
   <% form_check_box(f, :eagle) %>
   <% form_submit_buttons(f, use_save_and_new) %>
 <% end %>

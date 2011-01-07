@@ -20,11 +20,11 @@ module ApplicationHelper
     safe_concat "</div>"
   end
 
-  def form_date_select(f, field_symbol)
+  def form_date_select(f, field_symbol, options = {})
     safe_concat "<div class='field'>"
     safe_concat f.label(field_symbol)
     safe_concat "<br />"
-    safe_concat f.date_select(field_symbol)
+    safe_concat f.date_select(field_symbol, options)
     safe_concat "</div>"
   end
 

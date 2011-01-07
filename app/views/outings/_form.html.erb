@@ -1,7 +1,8 @@
 <%= form_for(@outing) do |f| %>
   <% form_error_messages(@outing, "outing") %>
   <% form_text_field(f, :name) %>
-  <% form_date_select(f, :date) %>
+  <% form_date_select(f, :date,
+    :start_year => Time.now.year - 10, :end_year => Time.now.year + 1) %>
   <% form_text_field(f, :nights_of_camping) %>
   <% form_check_box(f, :long_term_camp) %>
   <% form_submit_buttons(f, use_save_and_new) %>

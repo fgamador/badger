@@ -2,11 +2,8 @@
   <% form_error_messages(@scout, "scout") %>
   <% form_text_field(f, :first_name) %>
   <% form_text_field(f, :last_name) %>
-  <div class="field">
-    <%= f.label :birthday %><br />
-    <%= f.date_select :birthday, :include_blank => true,
-      :start_year => Time.now.year - 20, :end_year => Time.now.year - 10 %>
-  </div>
+  <% form_date_select(f, :birthday, :include_blank => true,
+    :start_year => Time.now.year - 20, :end_year => Time.now.year - 10) %>
   <% form_check_box(f, :active) %>
   <% form_submit_buttons(f, use_save_and_new) %>
 <% end %>
