@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20110107043851
+#
+# Table name: ranks
+#
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  ordinal            :integer
+#  num_merit_badges   :integer         default(0)
+#  num_eagle_required :integer         default(0)
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 class Rank < ActiveRecord::Base
   validates_presence_of :name, :ordinal
   validates_uniqueness_of :name

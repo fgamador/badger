@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20110107043851
+#
+# Table name: awards
+#
+#  id            :integer         not null, primary key
+#  name          :string(255)
+#  one_per_scout :boolean
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class Award < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name

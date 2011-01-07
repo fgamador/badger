@@ -16,17 +16,17 @@ class Scout < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :birthday, :active
   validates :first_name, :presence => true
 
-=begin
-  has_many :scout_awards, :dependent => :destroy, :order => "earned DESC"
-  has_many :awards, :through => :scout_awards, :order => "name"
+#  has_many :scout_awards, :dependent => :destroy, :order => "earned DESC"
+#  has_many :awards, :through => :scout_awards, :order => "name"
   has_many :scout_merit_badges, :dependent => :destroy
   has_many :merit_badges, :through => :scout_merit_badges, :order => "name"
-  has_many :scout_outings, :dependent => :destroy
-  has_many :outings, :through => :scout_outings, :order => "date"
-  has_many :scout_ranks, :dependent => :destroy
-  has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
-  named_scope :active, :conditions => { :active => true }
+#  has_many :scout_outings, :dependent => :destroy
+#  has_many :outings, :through => :scout_outings, :order => "date"
+#  has_many :scout_ranks, :dependent => :destroy
+#  has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
+#  named_scope :active, :conditions => { :active => true }
 
+=begin
   def add_award(params)
     scout_awards.build(params).save
   end
@@ -48,14 +48,17 @@ class Scout < ActiveRecord::Base
   def next_rank
     Rank.next_rank rank
   end
+=end
 
   def scout_merit_badges_alphabetical
     scout_merit_badges.sort { |smb1,smb2| smb1.merit_badge.name <=> smb2.merit_badge.name }
   end
 
+=begin
   def scout_ranks_descending
     scout_ranks.sort { |sr1,sr2| sr2.rank.ordinal <=> sr1.rank.ordinal }
   end
+=end
 
   def merit_badge_counts
     total = 0
@@ -84,6 +87,7 @@ class Scout < ActiveRecord::Base
     }
   end
 
+=begin
   def nights_of_camping_counts
     long_term_camp_nights = 0
     other_nights = 0

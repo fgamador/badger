@@ -7,6 +7,8 @@
     <td>< %= @scout.rank ? (@scout.rank.name) : "" %></td>
     <th>Merit badges:</th>
     < % td_merit_badge_counts(@scout) %>
+    -->
+    <!--
     <th>Nights of camping:</th>
     < % td_nights_of_camping_counts(@scout) %>
     -->
@@ -23,5 +25,35 @@
     </td>
   <% end %>
   </tr>
+</table>
+
+<table class="listing vsep">
+  <tr>
+    <th>Merit Badge</th>
+    <th>Earned</th>
+    <th>Awarded</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_scout_scout_merit_badge_path(@scout) %></td>
+  <% end %>
+  </tr>
+<% @scout.scout_merit_badges_alphabetical.each do |smb| %>
+  <tr>
+    <td class="<%= smb.merit_badge.eagle_required ? 'required' : 'nonrequired' %>"
+      title="<%= smb.merit_badge.eagle_required ? 'Eagle-required' : '' %>">
+      <%= link_to smb.merit_badge.name, smb.merit_badge %>
+    </td>
+    <td><%= smb.earned %></td>
+    <td class="<%= smb.uncollected ? 'uncollected' : '' %>"
+      title="<%= smb.uncollected ? 'Uncollected' : '' %>">
+      <%= link_to_name_or_blank smb.court_of_honor %>
+    </td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_scout_scout_merit_badge_path(@scout, smb) %>
+      <%= link_to 'Delete', scout_scout_merit_badge_path(@scout, smb), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
 </table>
 

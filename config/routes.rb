@@ -27,6 +27,7 @@ Badger::Application.routes.draw do
       get 'show_inactive'
       get 'view_mode'
     end
+    resources :scout_merit_badges
   end
 
   # The priority is based upon order of creation:

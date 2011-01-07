@@ -5,13 +5,13 @@
     <th>Eagle-required:</th>
     <td><%= @merit_badge.eagle_required ? "Y" : "N" %></td>
   <% if admin? %>
-    <td class="actions"><%= link_to 'Edit', edit_merit_badge_path(@merit_badge) %></td>
-<!--
-    < % if @merit_badge.unused? %>
-      < %= link_to 'Delete', @merit_badge,
+    <td class="actions">
+      <%= link_to 'Edit', edit_merit_badge_path(@merit_badge) %>
+    <% if @merit_badge.unused? %>
+      <%= link_to 'Delete', @merit_badge,
         :confirm => "Delete unused #{@merit_badge.name} merit badge?", :method => :delete %>
-    < % end %>
--->
+    <% end %>
+    </td>
   <% end %>
   </tr>
 </table>

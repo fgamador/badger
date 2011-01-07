@@ -19,3 +19,12 @@
   </tr>
 </table>
 
+<h2 class="vsep">Merit badges</h2>
+
+<% @merit_badges.each do |merit_badge| %>
+<p>
+  <strong><%= link_to merit_badge.name, merit_badge %>:</strong>
+  <%= @scouts_by_merit_badge[merit_badge].collect {|scout| link_to (h scout.name), scout }.join(", ").html_safe %>
+</p>
+<% end %>
+
