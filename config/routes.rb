@@ -1,19 +1,4 @@
 Badger::Application.routes.draw do
-#  map.resources :court_of_honors
-#  map.resources :merit_badges
-#  map.resources :outings do |outing|
-#    outing.resources :outing_awards
-#    outing.resources :scout_outings
-#  end
-#  map.resources :ranks
-#  map.resources :awards
-#  map.resources :scouts, :collection => { :login => :get } do |scout|
-#    scout.resources :scout_awards
-#    scout.resources :scout_merit_badges
-#    scout.resources :scout_outings
-#    scout.resources :scout_ranks
-#  end
-
   resources :awards
   resources :badger_configs
   resources :court_of_honors
@@ -27,7 +12,10 @@ Badger::Application.routes.draw do
       get 'view_mode'
     end
   end
-  resources :outings
+  resources :outings do
+    resources :outing_awards
+    resources :outing_scouts
+  end
   resources :ranks
   resources :scouts do
     resources :scout_awards

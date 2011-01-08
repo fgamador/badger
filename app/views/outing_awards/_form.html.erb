@@ -1,0 +1,10 @@
+<%= form_for([@outing, @outing_award]) do |f| %>
+  <% form_error_messages(@outing_award, "award") %>
+
+  <div class='field'>
+    <%= f.label(:award_id) %><br />
+    <%= f.collection_select(:award_id, @eligible_awards, :id, :name) %>
+  </div>
+  <% form_submit_buttons(f, use_save_and_new) %>
+<% end %>
+

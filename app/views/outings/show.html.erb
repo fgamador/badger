@@ -9,14 +9,56 @@
     <th>Long-Term Camp:</th>
     <td><%= @outing.long_term_camp %></td>
   <% if admin? %>
-    <td class="actions"><%= link_to 'Edit', edit_outing_path(@outing) %></td>
-<!--
-    < % if @outing.unused? %>
-      < %= link_to 'Delete', @outing,
+    <td class="actions">
+      <%= link_to 'Edit', edit_outing_path(@outing) %>
+    <% if @outing.unused? %>
+      <%= link_to 'Delete', @outing,
         :confirm => "Delete unused #{@outing.name}?", :method => :delete %>
-    < % end %>
--->
+    <% end %>
+    </td>
   <% end %>
   </tr>
+</table>
+
+<table class="listing vsep">
+  <tr>
+    <th>Award</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_outing_outing_award_path(@outing) %></td>
+  <% end %>
+  </tr>
+<% @outing.outing_awards.each do |oa| %>
+  <tr>
+    <td><%= link_to oa.award.name, oa.award %></td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_outing_outing_award_path(@outing, oa) %>
+      <%= link_to 'Delete', outing_outing_award_path(@outing, oa), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<table class="listing vsep">
+  <tr>
+    <th>Scout</th>
+    <th>Nights of Camping</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_outing_outing_scout_path(@outing) %></td>
+  <% end %>
+  </tr>
+<% @outing.outing_scouts.each do |os| %>
+  <tr>
+    <td><%= link_to os.scout.name, os.scout %></td>
+    <td><%= os.nights_of_camping %></td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_outing_outing_scout_path(@outing, os) %>
+      <%= link_to 'Delete', outing_outing_scout_path(@outing, os), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
 </table>
 

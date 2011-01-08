@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108221057) do
+ActiveRecord::Schema.define(:version => 20110108231400) do
 
   create_table "awards", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,25 @@ ActiveRecord::Schema.define(:version => 20110108221057) do
   end
 
   add_index "merit_badges", ["name"], :name => "mb_by_name", :unique => true
+
+  create_table "outing_awards", :force => true do |t|
+    t.integer  "outing_id"
+    t.integer  "award_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "outing_awards", ["outing_id", "award_id"], :name => "oa_by_outing_award", :unique => true
+
+  create_table "outing_scouts", :force => true do |t|
+    t.integer  "outing_id"
+    t.integer  "scout_id"
+    t.integer  "nights_of_camping"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "outing_scouts", ["outing_id", "scout_id"], :name => "os_by_outing_scout", :unique => true
 
   create_table "outings", :force => true do |t|
     t.string   "name"

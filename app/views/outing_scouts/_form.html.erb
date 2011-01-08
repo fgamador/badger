@@ -1,0 +1,30 @@
+<%= form_for([@outing, @outing_scout]) do |f| %>
+  <% form_error_messages(@outing_scout, "scout") %>
+
+  <div class='field'>
+    <%= f.label :scout_id %><br />
+  <% if @outing_scout.new_record? %>
+    <%= f.collection_select(:scout_id, @eligible_scouts, :id, :name) %>
+  <% else %>
+    <strong><%= @outing_scout.scout.name %></strong>
+  <% end %>
+  </div>
+  <% form_text_field(f, :nights_of_camping) %>
+  <% form_date_select(f, :earned,
+    :start_year => Time.now.year - 10, :end_year => Time.now.year) %>
+<% if @outing_scout.new_record? %>
+  <% @outing.awards.each do |award| %>
+  <div class='field'>
+    <%= label_tag "award_ids[]", award.name %><br />
+    <%= check_box_tag "award_ids[]", award.id, true %>
+  </div>
+  <% end %>
+  <div class='field'>
+    <%= f.label :court_of_honor_id %><br />
+    <%= f.collection_select(:court_of_honor_id,
+      CourtOfHonor.all(:order => "date DESC"), :id, :name) %>
+  </div>
+<% end %>
+  <% form_submit_buttons(f, use_save_and_new) %>
+<% end %>
+

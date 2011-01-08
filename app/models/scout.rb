@@ -20,8 +20,8 @@ class Scout < ActiveRecord::Base
   has_many :awards, :through => :scout_awards, :order => "name"
   has_many :scout_merit_badges, :dependent => :destroy
   has_many :merit_badges, :through => :scout_merit_badges, :order => "name"
-#  has_many :scout_outings, :dependent => :destroy
-#  has_many :outings, :through => :scout_outings, :order => "date"
+  has_many :outing_scouts, :dependent => :destroy
+  has_many :outings, :through => :outing_scouts, :order => "date"
   has_many :scout_ranks, :dependent => :destroy
   has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
 #  named_scope :active, :conditions => { :active => true }
@@ -81,15 +81,14 @@ class Scout < ActiveRecord::Base
     }
   end
 
-=begin
   def nights_of_camping_counts
     long_term_camp_nights = 0
     other_nights = 0
-    scout_outings.each do |so|
-      if so.outing.long_term_camp
-        long_term_camp_nights += so.nights_of_camping
+    outing_scouts.each do |os|
+      if os.outing.long_term_camp
+        long_term_camp_nights += os.nights_of_camping
       else
-        other_nights += so.nights_of_camping
+        other_nights += os.nights_of_camping
       end
     end
     total_nights = long_term_camp_nights + other_nights
@@ -108,7 +107,6 @@ class Scout < ActiveRecord::Base
   def num_new_ten_noc_awards
     (nights_of_camping_counts[0] / 10) - num_ten_noc_awards
   end
-=end
 
   def <=> (scout)
     last_name <=> scout.last_name || first_name <=> scout.first_name

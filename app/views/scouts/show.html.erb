@@ -6,10 +6,8 @@
     <td><%= @scout.rank ? @scout.rank.name : "" %></td>
     <th>Merit badges:</th>
     <% td_merit_badge_counts(@scout) %>
-    <!--
     <th>Nights of camping:</th>
-    < % td_nights_of_camping_counts(@scout) %>
-    -->
+    <% td_nights_of_camping_counts(@scout) %>
     <th>Birthday:</th>
     <td><%= @scout.birthday %></td>
     <th><%= @scout.active ? "Active" : "Inactive" %></th>
@@ -86,9 +84,7 @@
   <tr>
     <th>Award</th>
     <th>Earned</th>
-<!--
     <th>Outing</th>
--->
     <th>Awarded</th>
   <% if admin? %>
     <td class="actions"><%= link_to 'Add', new_scout_scout_award_path(@scout) %></td>
@@ -98,13 +94,11 @@
   <tr>
     <td><%= link_to sa.award.name, sa.award %></td>
     <td><%= sa.earned %></td>
-<!--
   <% if sa.scout_outing %>
-    <td>< %= link_to sa.scout_outing.outing.name, sa.scout_outing.outing %></td>
+    <td><%= link_to sa.scout_outing.outing.name, sa.scout_outing.outing %></td>
   <% else %>
     <td></td>
   <% end %>
--->
     <td class="<%= sa.uncollected ? 'uncollected' : '' %>"
       title="<%= sa.uncollected ? 'Uncollected' : '' %>">
       <%= link_to_name_or_blank sa.court_of_honor %>
@@ -113,6 +107,30 @@
     <td class="actions">
       <%= link_to 'Edit', edit_scout_scout_award_path(@scout, sa) %>
       <%= link_to 'Delete', scout_scout_award_path(@scout, sa), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<table class="listing" style="margin-top: 2em;">
+  <tr>
+    <th>Outing</th>
+    <th>Date</th>
+    <th>Nights of Camping</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', outings_path %></td>
+  <% end %>
+  </tr>
+<% @scout.outing_scouts.each do |os| %>
+  <tr>
+    <td><%= link_to os.outing.name, os.outing %></td>
+    <td><%= os.outing.date %></td>
+    <td><%= os.nights_of_camping %></td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_outing_outing_scout_path(os.outing, os) %>
+      <%= link_to 'Delete', outing_outing_scout_path(os.outing, os), :confirm => 'Are you sure?', :method => :delete %>
     </td>
   <% end %>
   </tr>
