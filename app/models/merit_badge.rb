@@ -29,7 +29,7 @@ class MeritBadge < ActiveRecord::Base
   end
 
   def unused?
-    num_scouts == 0
+    scout_merit_badges.empty?
   end
 
   def owner

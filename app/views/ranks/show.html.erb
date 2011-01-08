@@ -2,10 +2,8 @@
 
 <table class="detail">
   <tr>
-<!--
     <th>Scouts:</th>
-    <td>< %= @rank.num_active_scouts %></td>
--->
+    <td><%= @rank.num_active_scouts %></td>
   <% if admin? %>
     <th>Ordinal:</th>
     <td><%= @rank.ordinal %></td>
@@ -16,13 +14,26 @@
     <td><%= @rank.num_eagle_required %></td>
   <% if admin? %>
     <td class="actions"><%= link_to 'Edit', edit_rank_path(@rank) %></td>
-<!--
-    < % if @rank.unused? %>
-      < %= link_to 'Delete', @rank,
+    <% if @rank.unused? %>
+      <%= link_to 'Delete', @rank,
         :confirm => "Delete unused #{@rank.name} rank?", :method => :delete %>
-    < % end %>
--->
+    <% end %>
   <% end %>
   </tr>
+</table>
+
+<table class="listing vsep">
+  <tr>
+    <th>Scout</th>
+    <th>Earned</th>
+    <% toggle_show_inactive_td %>
+  </tr>
+<% srs = show_inactive? ? @rank.scout_ranks : @rank.active_scout_ranks %>
+<% srs.each do |sr| %>
+  <tr>
+    <td><%= link_to sr.scout.name, sr.scout %></td>
+    <td><%= sr.earned %></td>
+  </tr>
+<% end %>
 </table>
 

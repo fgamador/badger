@@ -1,0 +1,22 @@
+<%= form_for([@scout, @scout_rank]) do |f| %>
+  <% form_error_messages(@scout_rank, "rank") %>
+
+  <div class='field'>
+    <%= f.label(:rank_id) %><br />
+  <% if @scout_rank.new_record? %>
+    <%= f.collection_select(:rank_id, @eligible_ranks, :id, :name) %>
+  <% else %>
+    <strong><%= @scout_rank.rank.name %></strong>
+  <% end %>
+  </div>
+  <% form_date_select(f, :earned,
+    :start_year => Time.now.year - 10, :end_year => Time.now.year) %>
+  <div class='field'>
+    <%= f.label(:court_of_honor_id) %><br />
+    <%= f.collection_select(:court_of_honor_id,
+      CourtOfHonor.all(:order => "date DESC"), :id, :name) %>
+  </div>
+  <% form_check_box(f, :uncollected) %>
+  <% form_submit_buttons(f, use_save_and_new) %>
+<% end %>
+

@@ -3,9 +3,9 @@
 <table class="listing">
   <tr>
     <th>Name</th>
-    <!--
     <th>Rank</th>
     <th>Merit Badges</th>
+    <!--
     <th>Nights of Camping</th>
     -->
     <th>Birthday</th>
@@ -23,9 +23,9 @@
 <% @scouts.each do |scout| %>
   <tr>
     <td><%= link_to scout.name, scout %></td>
+    <td><%= scout.rank ? (link_to scout.rank.name, scout.rank) : "" %></td>
+    <% td_merit_badge_counts(scout) %>
     <!--
-    <td>< %= scout.rank ? (link_to scout.rank.name, scout.rank) : "" %></td>
-    < % td_merit_badge_counts(scout) %>
     < % td_nights_of_camping_counts(scout) %>
     -->
     <td><%= scout.birthday %></td>

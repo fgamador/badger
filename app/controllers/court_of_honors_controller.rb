@@ -34,7 +34,7 @@ class CourtOfHonorsController < ApplicationController
     @court_of_honor = CourtOfHonor.new(params[:court_of_honor])
     if @court_of_honor.save
       redir_url = params[:save_and_new] ? new_court_of_honor_url : court_of_honors_url
-      redirect_to(redir_url, :notice => "CourtOfHonor was successfully created.")
+      redirect_to(redir_url, :notice => "Court of Honor was successfully created.")
     else
       render :action => "new"
     end
@@ -47,7 +47,7 @@ class CourtOfHonorsController < ApplicationController
     end
 
     if @court_of_honor.update_attributes(params[:court_of_honor])
-      redirect_to(@court_of_honor, :notice => "CourtOfHonor was successfully updated.")
+      redirect_to(@court_of_honor, :notice => "Court of Honor was successfully updated.")
     else
       render :action => "edit"
     end

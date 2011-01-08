@@ -2,12 +2,10 @@
 
 <table class="detail">
   <tr>
-    <!--
     <th>Rank:</th>
-    <td>< %= @scout.rank ? (@scout.rank.name) : "" %></td>
+    <td><%= @scout.rank ? @scout.rank.name : "" %></td>
     <th>Merit badges:</th>
-    < % td_merit_badge_counts(@scout) %>
-    -->
+    <% td_merit_badge_counts(@scout) %>
     <!--
     <th>Nights of camping:</th>
     < % td_nights_of_camping_counts(@scout) %>
@@ -25,6 +23,33 @@
     </td>
   <% end %>
   </tr>
+</table>
+
+<table class="listing vsep">
+  <tr>
+    <th>Rank</th>
+    <th>Earned</th>
+    <th>Awarded</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_scout_scout_rank_path(@scout) %></td>
+  <% end %>
+  </tr>
+<% @scout.scout_ranks_descending.each do |sr| %>
+  <tr>
+    <td><%= link_to sr.rank.name, sr.rank %></td>
+    <td><%= sr.earned %></td>
+    <td class="<%= sr.uncollected ? 'uncollected' : '' %>"
+      title="<%= sr.uncollected ? 'Uncollected' : '' %>">
+      <%= link_to_name_or_blank sr.court_of_honor %>
+    </td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_scout_scout_rank_path(@scout, sr) %>
+      <%= link_to 'Delete', scout_scout_rank_path(@scout, sr), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
 </table>
 
 <table class="listing vsep">

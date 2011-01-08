@@ -14,14 +14,14 @@ class ScoutMeritBadgesController < ApplicationController
 
   def create
     if params[:cancel]
-      redirect_to(@scout)
+      redirect_to @scout
       return
     end
 
     @scout_merit_badge = @scout.scout_merit_badges.build(params[:scout_merit_badge])
     if @scout_merit_badge.save
       redir_url = params[:save_and_new] ? new_scout_scout_merit_badge_path(@scout) : @scout
-      redirect_to(redir_url, :notice => "Merit badge was successfully added.")
+      redirect_to redir_url, :notice => "Merit badge was successfully added."
     else
       @eligible_merit_badges = MeritBadge.all(:order => "name") -
         (@scout.merit_badges - [ @scout_merit_badge.merit_badge ])
@@ -31,12 +31,12 @@ class ScoutMeritBadgesController < ApplicationController
 
   def update
     if params[:cancel]
-      redirect_to(@scout)
+      redirect_to @scout
       return
     end
 
     if @scout_merit_badge.update_attributes(params[:scout_merit_badge])
-      redirect_to(@scout, :notice => "Merit badge was successfully updated.")
+      redirect_to @scout, :notice => "Merit badge was successfully updated."
     else
       render :action => "edit"
     end
@@ -44,7 +44,7 @@ class ScoutMeritBadgesController < ApplicationController
 
   def destroy
     @scout_merit_badge.destroy
-    redirect_to(@scout)
+    redirect_to @scout
   end
 
   private

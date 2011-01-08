@@ -22,8 +22,8 @@ class Scout < ActiveRecord::Base
   has_many :merit_badges, :through => :scout_merit_badges, :order => "name"
 #  has_many :scout_outings, :dependent => :destroy
 #  has_many :outings, :through => :scout_outings, :order => "date"
-#  has_many :scout_ranks, :dependent => :destroy
-#  has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
+  has_many :scout_ranks, :dependent => :destroy
+  has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
 #  named_scope :active, :conditions => { :active => true }
 
 =begin
@@ -40,7 +40,6 @@ class Scout < ActiveRecord::Base
     first_name + " " + last_name
   end
 
-=begin
   def rank
     ranks.empty? ? nil : ranks[0];
   end
@@ -48,17 +47,14 @@ class Scout < ActiveRecord::Base
   def next_rank
     Rank.next_rank rank
   end
-=end
 
   def scout_merit_badges_alphabetical
     scout_merit_badges.sort { |smb1,smb2| smb1.merit_badge.name <=> smb2.merit_badge.name }
   end
 
-=begin
   def scout_ranks_descending
     scout_ranks.sort { |sr1,sr2| sr2.rank.ordinal <=> sr1.rank.ordinal }
   end
-=end
 
   def merit_badge_counts
     total = 0
@@ -83,7 +79,7 @@ class Scout < ActiveRecord::Base
       :total => total,
       :total_satisfied => nr && total >= nr.num_merit_badges,
       :required => required,
-      :required_satisfied => nr && required >= nr.num_required
+      :required_satisfied => nr && required >= nr.num_eagle_required
     }
   end
 

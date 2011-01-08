@@ -30,6 +30,7 @@ Badger::Application.routes.draw do
   resources :ranks
   resources :scouts do
     resources :scout_merit_badges
+    resources :scout_ranks
   end
 
   # The priority is based upon order of creation:

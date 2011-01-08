@@ -3,14 +3,11 @@
 <table class="listing">
   <tr>
     <th>Name</th>
-<!--
-    <th>Scouts</th>
--->
+    <th>Scouts at rank</th>
   <% if admin? %>
     <th>Ordinal</th>
   <% end %>
-    <th>Merit badges</th>
-    <th>Eagle-required badges</th>
+    <th>Merit badges required</th>
   <% if admin? %>
     <td class="actions"><%= link_to 'Add', new_rank_path %></td>
   <% end %>
@@ -19,14 +16,11 @@
 <% @ranks.each do |rank| %>
   <tr>
     <td><%= link_to rank.name, rank %></td>
-<!--
-    <td>< %= rank.num_active_scouts %></td>
--->
+    <td><%= rank.num_active_scouts %></td>
   <% if admin? %>
     <td><%= rank.ordinal %></td>
   <% end %>
-    <td><%= rank.num_merit_badges %></td>
-    <td><%= rank.num_eagle_required %></td>
+    <% td_rank_merit_badge_counts(rank) %>
   </tr>
 <% end %>
 </table>
