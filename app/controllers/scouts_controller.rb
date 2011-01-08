@@ -1,6 +1,6 @@
 class ScoutsController < ApplicationController
-  before_filter :authenticate, :only => [:index, :show, :show_inactive, :hide_inactive]
-  before_filter :authenticate_admin, :except => [:index, :show, :show_inactive, :hide_inactive]
+  before_filter :authenticate, :only => [:index, :show]
+  before_filter :authenticate_admin, :except => [:index, :show]
   before_filter :cache_session_vars
   before_filter :find_scout, :only => [:show, :edit, :update, :destroy]
 
@@ -52,26 +52,6 @@ class ScoutsController < ApplicationController
 
   def destroy
     @scout.destroy
-    redirect_to(scouts_url)
-  end
-
-  def admin_mode
-    set_admin_mode(true)
-    redirect_to(scouts_url)
-  end
-
-  def view_mode
-    set_admin_mode(false)
-    redirect_to(scouts_url)
-  end
-
-  def show_inactive
-    set_show_inactive(true)
-    redirect_to(scouts_url)
-  end
-
-  def hide_inactive
-    set_show_inactive(false)
     redirect_to(scouts_url)
   end
 
