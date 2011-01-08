@@ -12,13 +12,7 @@
   <% if show_inactive? %>
     <th>Active</th>
   <% end %>
-    <td class="actions">
-    <% if show_inactive? %>
-      <%= link_to 'Hide inactive', hide_inactive_scouts_path %>
-    <% else %>
-      <%= link_to 'Show inactive', show_inactive_scouts_path %>
-    <% end %>
-    </td>
+    <% toggle_show_inactive_td %>
   <% if admin? %>
     <td class="actions">
       <%= link_to 'Add', new_scout_path %>

@@ -27,10 +27,10 @@
           <li><%= link_to "Outings", outings_path %></li>
           <li><%= link_to "Courts of Honor", court_of_honors_path %></li>
         <% if admin? %>
-          <li><%= link_to "~Admin", view_mode_scouts_path %></li>
+          <li><%= link_to "~Admin", view_mode_modes_path %></li>
           <li><%= link_to "Setup", (edit_badger_config_path BadgerConfig.first) %></li>
         <% else %>
-          <li><%= link_to "Admin", admin_mode_scouts_path %></li>
+          <li><%= link_to "Admin", admin_mode_modes_path %></li>
         <% end %>
         </ul>
       </nav>

@@ -18,15 +18,17 @@ Badger::Application.routes.draw do
   resources :badger_configs
   resources :court_of_honors
   resources :merit_badges
-  resources :outings
-  resources :ranks
-  resources :scouts do
+  resources :modes do
     collection do
       get 'admin_mode'
       get 'hide_inactive'
       get 'show_inactive'
       get 'view_mode'
     end
+  end
+  resources :outings
+  resources :ranks
+  resources :scouts do
     resources :scout_merit_badges
   end
 

@@ -20,8 +20,10 @@
   <tr>
     <th>Scout</th>
     <th>Earned</th>
+    <% toggle_show_inactive_td %>
   </tr>
-<% @merit_badge.scout_merit_badges.each do |smb| %>
+<% smbs = show_inactive? ? @merit_badge.scout_merit_badges : @merit_badge.active_scout_merit_badges %>
+<% smbs.each do |smb| %>
   <tr>
     <td><%= link_to smb.scout.name, smb.scout %></td>
     <td><%= smb.earned %></td>
