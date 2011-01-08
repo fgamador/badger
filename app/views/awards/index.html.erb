@@ -3,9 +3,7 @@
 <table class="listing">
   <tr>
     <th>Name</th>
-<!--
     <th>Scouts</th>
--->
   <% if admin? %>
     <td class="actions"><%= link_to 'Add', new_award_path %></td>
   <% end %>
@@ -14,9 +12,7 @@
 <% for award in @awards %>
   <tr>
     <td><%= link_to award.name, award %></td>
-<!--
-    <td>< %= award.num_active_scouts %></td>
--->
+    <td><%= award.num_active_scouts %></td>
   </tr>
 <% end %>
 </table>

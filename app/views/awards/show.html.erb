@@ -5,13 +5,24 @@
     <th><%= @award.one_per_scout ? "One per scout" : "Unlimited" %></th>
   <% if admin? %>
     <td class="actions"><%= link_to 'Edit', edit_award_path(@award) %></td>
-<!--
-    < % if @award.unused? %>
-      < %= link_to 'Delete', @award,
-        :confirm => "Delete unused #{@award.name} merit badge?", :method => :delete %>
-    < % end %>
--->
+    <% if @award.unused? %>
+      <%= link_to 'Delete', @award,
+        :confirm => "Delete unused #{@award.name} award?", :method => :delete %>
+    <% end %>
   <% end %>
   </tr>
+</table>
+
+<table class="listing vsep">
+  <tr>
+    <th>Scout</th>
+    <th>Earned</th>
+  </tr>
+<% @award.scout_awards.each do |sa| %>
+  <tr>
+    <td><%= link_to sa.scout.name, sa.scout %></td>
+    <td><%= sa.earned %></td>
+  </tr>
+<% end %>
 </table>
 

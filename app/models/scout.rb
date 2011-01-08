@@ -16,8 +16,8 @@ class Scout < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :birthday, :active
   validates :first_name, :presence => true
 
-#  has_many :scout_awards, :dependent => :destroy, :order => "earned DESC"
-#  has_many :awards, :through => :scout_awards, :order => "name"
+  has_many :scout_awards, :dependent => :destroy, :order => "earned DESC"
+  has_many :awards, :through => :scout_awards, :order => "name"
   has_many :scout_merit_badges, :dependent => :destroy
   has_many :merit_badges, :through => :scout_merit_badges, :order => "name"
 #  has_many :scout_outings, :dependent => :destroy
@@ -26,7 +26,6 @@ class Scout < ActiveRecord::Base
   has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
 #  named_scope :active, :conditions => { :active => true }
 
-=begin
   def add_award(params)
     scout_awards.build(params).save
   end
@@ -34,7 +33,6 @@ class Scout < ActiveRecord::Base
   def one_per_scout_awards
     awards.select {|award| award.one_per_scout }
   end
-=end
 
   def name
     first_name + " " + last_name

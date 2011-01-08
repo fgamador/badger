@@ -82,3 +82,40 @@
 <% end %>
 </table>
 
+<table class="listing vsep">
+  <tr>
+    <th>Award</th>
+    <th>Earned</th>
+<!--
+    <th>Outing</th>
+-->
+    <th>Awarded</th>
+  <% if admin? %>
+    <td class="actions"><%= link_to 'Add', new_scout_scout_award_path(@scout) %></td>
+  <% end %>
+  </tr>
+<% @scout.scout_awards.each do |sa| %>
+  <tr>
+    <td><%= link_to sa.award.name, sa.award %></td>
+    <td><%= sa.earned %></td>
+<!--
+  <% if sa.scout_outing %>
+    <td>< %= link_to sa.scout_outing.outing.name, sa.scout_outing.outing %></td>
+  <% else %>
+    <td></td>
+  <% end %>
+-->
+    <td class="<%= sa.uncollected ? 'uncollected' : '' %>"
+      title="<%= sa.uncollected ? 'Uncollected' : '' %>">
+      <%= link_to_name_or_blank sa.court_of_honor %>
+    </td>
+  <% if admin? %>
+    <td class="actions">
+      <%= link_to 'Edit', edit_scout_scout_award_path(@scout, sa) %>
+      <%= link_to 'Delete', scout_scout_award_path(@scout, sa), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+

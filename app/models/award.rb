@@ -13,12 +13,11 @@
 class Award < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
-=begin
   has_many :scout_awards, :dependent => :destroy, :order => "earned DESC"
-  has_many :outing_awards, :dependent => :destroy
+#  has_many :outing_awards, :dependent => :destroy
 
   def self.ten_nights_of_camping
-    find(1) # TODO must be a better way
+    first
   end
 
   def num_active_scouts
@@ -30,7 +29,10 @@ class Award < ActiveRecord::Base
     end
     unique_scouts.size
   end
-=end
+
+  def unused?
+    scout_awards.empty? # TODO and outing_awards.empty?
+  end
 
   def <=> (award)
     name <=> award.name

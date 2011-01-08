@@ -1,0 +1,22 @@
+<%= form_for([@scout, @scout_award]) do |f| %>
+  <% form_error_messages(@scout_award, "merit badge") %>
+
+  <div class='field'>
+    <%= f.label(:award_id) %><br />
+  <% if @scout_award.new_record? %>
+    <%= f.collection_select(:award_id, @eligible_awards, :id, :name) %>
+  <% else %>
+    <strong><%= @scout_award.award.name %></strong>
+  <% end %>
+  </div>
+  <% form_date_select(f, :earned,
+    :start_year => Time.now.year - 10, :end_year => Time.now.year) %>
+  <div class='field'>
+    <%= f.label(:court_of_honor_id) %><br />
+    <%= f.collection_select(:court_of_honor_id,
+      CourtOfHonor.all(:order => "date DESC"), :id, :name) %>
+  </div>
+  <% form_check_box(f, :uncollected) %>
+  <% form_submit_buttons(f, use_save_and_new) %>
+<% end %>
+

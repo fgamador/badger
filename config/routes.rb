@@ -18,6 +18,7 @@ Badger::Application.routes.draw do
   resources :badger_configs
   resources :court_of_honors
   resources :merit_badges
+  # TODO not really a resource
   resources :modes do
     collection do
       get 'admin_mode'
@@ -29,6 +30,7 @@ Badger::Application.routes.draw do
   resources :outings
   resources :ranks
   resources :scouts do
+    resources :scout_awards
     resources :scout_merit_badges
     resources :scout_ranks
   end

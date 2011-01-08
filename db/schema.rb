@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108060929) do
+ActiveRecord::Schema.define(:version => 20110108221057) do
 
   create_table "awards", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(:version => 20110108060929) do
 
   add_index "ranks", ["name"], :name => "rank_by_name", :unique => true
   add_index "ranks", ["ordinal"], :name => "rank_by_ordinal", :unique => true
+
+  create_table "scout_awards", :force => true do |t|
+    t.integer  "scout_id"
+    t.integer  "award_id"
+    t.integer  "scout_outing_id"
+    t.date     "earned"
+    t.integer  "court_of_honor_id"
+    t.boolean  "uncollected"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "scout_merit_badges", :force => true do |t|
     t.integer  "scout_id"
