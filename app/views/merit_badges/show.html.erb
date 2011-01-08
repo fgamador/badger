@@ -16,3 +16,16 @@
   </tr>
 </table>
 
+<table class="listing vsep">
+  <tr>
+    <th>Scout</th>
+    <th>Earned</th>
+  </tr>
+<% @merit_badge.scout_merit_badges.each do |smb| %>
+  <tr>
+    <td><%= link_to smb.scout.name, smb.scout %></td>
+    <td><%= smb.earned %></td>
+  </tr>
+<% end %>
+</table>
+

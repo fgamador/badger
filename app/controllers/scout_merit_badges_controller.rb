@@ -20,7 +20,7 @@ class ScoutMeritBadgesController < ApplicationController
 
     @scout_merit_badge = @scout.scout_merit_badges.build(params[:scout_merit_badge])
     if @scout_merit_badge.save
-      redir_url = params[:save_and_new] ? new_scout_merit_badge_url : @scout
+      redir_url = params[:save_and_new] ? new_scout_scout_merit_badge_path(@scout) : @scout
       redirect_to(redir_url, :notice => "Merit badge was successfully added.")
     else
       @eligible_merit_badges = MeritBadge.all(:order => "name") -

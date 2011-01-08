@@ -3,10 +3,8 @@
 <table class="listing">
   <tr>
     <th>Name</th>
-<!--
     <th>Scouts</th>
     <th>"Owned" by</th>
--->
   <% if admin? %>
     <th>Group Number</th>
     <td class="actions"><%= link_to 'Add', new_merit_badge_path %></td>
@@ -19,11 +17,9 @@
       title="<%= merit_badge.eagle_required ? 'Eagle-required' : '' %>">
       <%= link_to merit_badge.name, merit_badge %>
     </td>
-<!--
-    <td>< %= merit_badge.num_active_scouts %></td>
-    < % owner = merit_badge.owner %>
-    <td>< %= owner ? (link_to owner.name, owner) : "" %></td>
--->
+    <td><%= merit_badge.num_active_scouts %></td>
+    <% owner = merit_badge.owner %>
+    <td><%= owner ? (link_to owner.name, owner) : "" %></td>
   <% if admin? %>
     <td><%= merit_badge.group_number %></td>
   <% end %>
