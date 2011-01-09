@@ -29,7 +29,7 @@
     <% toggle_show_inactive_td %>
   </tr>
 <% srs = show_inactive? ? @rank.scout_ranks : @rank.active_scout_ranks %>
-<% srs.each do |sr| %>
+<% srs.sort {|sr1,sr2| sr1.scout <=> sr2.scout }.each do |sr| %>
   <tr>
     <td><%= link_to sr.scout.name, sr.scout %></td>
     <td><%= sr.earned %></td>

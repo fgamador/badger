@@ -14,10 +14,14 @@ class Award < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   has_many :scout_awards, :dependent => :destroy, :order => "earned DESC"
-#  has_many :outing_awards, :dependent => :destroy
+  has_many :outing_awards, :dependent => :destroy
 
   def self.ten_nights_of_camping
     first
+  end
+
+  def active_scout_awards
+    scout_awards.select {|sa| sa.scout.active? }
   end
 
   def num_active_scouts
@@ -31,7 +35,7 @@ class Award < ActiveRecord::Base
   end
 
   def unused?
-    scout_awards.empty? # TODO and outing_awards.empty?
+    scout_awards.empty? && outing_awards.empty?
   end
 
   def <=> (award)
