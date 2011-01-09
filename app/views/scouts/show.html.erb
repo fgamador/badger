@@ -94,8 +94,8 @@
   <tr>
     <td><%= link_to sa.award.name, sa.award %></td>
     <td><%= sa.earned %></td>
-  <% if sa.scout_outing %>
-    <td><%= link_to sa.scout_outing.outing.name, sa.scout_outing.outing %></td>
+  <% if sa.outing_scout %>
+    <td><%= link_to sa.outing_scout.outing.name, sa.outing_scout.outing %></td>
   <% else %>
     <td></td>
   <% end %>

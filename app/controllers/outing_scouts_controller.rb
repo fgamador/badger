@@ -5,7 +5,9 @@ class OutingScoutsController < ApplicationController
   def new
     @title = "Add scout to " + @outing.name
     @outing_scout = @outing.outing_scouts.build
-    @eligible_scouts = Scout.all(:order => "name") - @outing.scouts
+    @outing_scout.nights_of_camping = @outing.nights_of_camping
+    # TODO active only
+    @eligible_scouts = Scout.all.sort - @outing.scouts
   end
 
   def edit
@@ -20,11 +22,24 @@ class OutingScoutsController < ApplicationController
 
     @outing_scout = @outing.outing_scouts.build(params[:outing_scout])
     if @outing_scout.save
+      court_of_honor = params[:court_of_honor_id] ? CourtOfHonor.find(params[:court_of_honor_id]) : nil
+
+      if params[:award_ids]
+        params[:award_ids].each do |id|
+          @outing_scout.scout.add_award :award => Award.find(id), :earned => @outing_scout.outing.date,
+            :outing_scout => @outing_scout, :court_of_honor => court_of_honor
+        end
+      end
+
+      @outing_scout.scout.num_new_ten_noc_awards.times do
+        @outing_scout.scout.add_award :award => Award.ten_nights_of_camping, :earned => @outing_scout.outing.date,
+          :outing_scout => @outing_scout, :court_of_honor => court_of_honor
+      end
+
       redir_url = params[:save_and_new] ? new_outing_outing_scout_path(@outing) : @outing
       redirect_to redir_url, :notice => "Scout was successfully added."
     else
-      @eligible_scouts = Scout.all(:order => "name") -
-        (@outing.scouts - [ @outing_scout.scout ])
+      @eligible_scouts = Scout.all.sort - (@outing.scouts - [ @outing_scout.scout ])
       render :action => "new"
     end
   end

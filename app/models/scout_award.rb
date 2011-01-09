@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20110108221057
+# Schema version: 20110109000954
 #
 # Table name: scout_awards
 #
 #  id                :integer         not null, primary key
 #  scout_id          :integer
 #  award_id          :integer
-#  scout_outing_id   :integer
+#  outing_scout_id   :integer
 #  earned            :date
 #  court_of_honor_id :integer
 #  uncollected       :boolean
@@ -17,7 +17,7 @@
 class ScoutAward < ActiveRecord::Base
   belongs_to :scout
   belongs_to :award
-  belongs_to :scout_outing
+  belongs_to :outing_scout
   belongs_to :court_of_honor
 end
 

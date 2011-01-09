@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108231400) do
+ActiveRecord::Schema.define(:version => 20110109000954) do
 
   create_table "awards", :force => true do |t|
     t.string   "name"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20110108231400) do
   create_table "scout_awards", :force => true do |t|
     t.integer  "scout_id"
     t.integer  "award_id"
-    t.integer  "scout_outing_id"
+    t.integer  "outing_scout_id"
     t.date     "earned"
     t.integer  "court_of_honor_id"
     t.boolean  "uncollected"

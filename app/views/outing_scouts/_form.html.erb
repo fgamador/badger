@@ -10,8 +10,6 @@
   <% end %>
   </div>
   <% form_text_field(f, :nights_of_camping) %>
-  <% form_date_select(f, :earned,
-    :start_year => Time.now.year - 10, :end_year => Time.now.year) %>
 <% if @outing_scout.new_record? %>
   <% @outing.awards.each do |award| %>
   <div class='field'>
@@ -20,9 +18,9 @@
   </div>
   <% end %>
   <div class='field'>
-    <%= f.label :court_of_honor_id %><br />
-    <%= f.collection_select(:court_of_honor_id,
-      CourtOfHonor.all(:order => "date DESC"), :id, :name) %>
+    <%= label_tag :court_of_honor_id %><br />
+    <%= select_tag :court_of_honor_id,
+      options_from_collection_for_select(CourtOfHonor.all(:order => "date DESC"), :id, :name) %>
   </div>
 <% end %>
   <% form_submit_buttons(f, use_save_and_new) %>
