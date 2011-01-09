@@ -20,7 +20,7 @@
     <% toggle_show_inactive_td %>
   </tr>
 <% sas = show_inactive? ? @award.scout_awards : @award.active_scout_awards %>
-<% sas.sort {|sa1,sa2| sa1.scout <=> sa2.scout }.each do |sa| %>
+<% sas.sort {|sa1,sa2| ScoutAward.by_scout_then_earned(sa1, sa2) }.each do |sa| %>
   <tr>
     <td><%= link_to sa.scout.name, sa.scout %></td>
     <td><%= sa.earned %></td>

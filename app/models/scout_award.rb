@@ -19,5 +19,10 @@ class ScoutAward < ActiveRecord::Base
   belongs_to :award
   belongs_to :outing_scout
   belongs_to :court_of_honor
+
+  def self.by_scout_then_earned(sa1, sa2)
+    val = sa1.scout <=> sa2.scout
+    val != 0 ? val : sa1.earned <=> sa2.earned
+  end
 end
 
