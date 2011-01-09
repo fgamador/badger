@@ -9,6 +9,10 @@ module ApplicationHelper
     safe_concat "</td>"
   end
 
+  def non_zero_or_blank(num)
+    num != 0 ? num.to_s : ""
+  end
+
   def form_error_messages(entity, label)
     if entity.errors.any?
       safe_concat "<div id='error_explanation'>"
