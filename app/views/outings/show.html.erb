@@ -4,10 +4,13 @@
   <tr>
     <th>Date:</th>
     <td><%= @outing.date %></td>
+    <th>Scouts:</th>
+    <td><%= @outing.num_scouts %></td>
     <th>Nights of Camping:</th>
     <td><%= @outing.nights_of_camping %></td>
-    <th>Long-Term Camp:</th>
-    <td><%= @outing.long_term_camp %></td>
+  <% if @outing.long_term_camp %>
+    <th>Long-Term Camp</th>
+  <% end %>
   <% if admin? %>
     <td class="actions">
       <%= link_to 'Edit', edit_outing_path(@outing) %>

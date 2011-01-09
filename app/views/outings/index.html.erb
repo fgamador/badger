@@ -4,9 +4,9 @@
   <tr>
     <th>Name</th>
     <th>Date</th>
+    <th>Scouts</th>
     <th>Nights of Camping</th>
     <th>Long-Term Camp</th>
-    <th>Scouts</th>
   <% if admin? %>
     <td class="actions"><%= link_to 'Add', new_outing_path %></td>
   <% end %>
@@ -16,9 +16,9 @@
   <tr>
     <td><%= link_to outing.name, outing %></td>
     <td><%= outing.date %></td>
-    <td><%= outing.nights_of_camping %></td>
-    <td><%= outing.long_term_camp %></td>
     <td><%= outing.num_scouts %></td>
+    <td><%= outing.nights_of_camping %></td>
+    <td><%= outing.long_term_camp ? "Y" : "" %></td>
   </tr>
 <% end %>
 </table>

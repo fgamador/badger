@@ -8,16 +8,16 @@
     <th>Ordinal:</th>
     <td><%= @rank.ordinal %></td>
   <% end %>
-    <th>Merit badges:</th>
-    <td><%= @rank.num_merit_badges %></td>
-    <th>Eagle-required badges:</th>
-    <td><%= @rank.num_eagle_required %></td>
+    <th>Merit badges required:</th>
+    <% td_rank_merit_badge_counts(@rank) %>
   <% if admin? %>
-    <td class="actions"><%= link_to 'Edit', edit_rank_path(@rank) %></td>
+    <td class="actions">
+      <%= link_to 'Edit', edit_rank_path(@rank) %>
     <% if @rank.unused? %>
       <%= link_to 'Delete', @rank,
         :confirm => "Delete unused #{@rank.name} rank?", :method => :delete %>
     <% end %>
+    </td>
   <% end %>
   </tr>
 </table>

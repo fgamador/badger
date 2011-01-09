@@ -2,8 +2,9 @@
 
 <table class="detail">
   <tr>
-    <th>Eagle-required:</th>
-    <td><%= @merit_badge.eagle_required ? "Y" : "N" %></td>
+  <% if @merit_badge.eagle_required %>
+    <th>Eagle required</th>
+  <% end %>
   <% if admin? %>
     <td class="actions">
       <%= link_to 'Edit', edit_merit_badge_path(@merit_badge) %>
