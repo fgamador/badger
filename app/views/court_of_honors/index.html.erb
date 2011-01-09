@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to court_of_honor.name, court_of_honor %></td>
     <td><%= court_of_honor.date %></td>
-    <td><%= court_of_honor.eagle %></td>
+    <td><%= court_of_honor.eagle ? "Y" : "" %></td>
     <td><%= court_of_honor.scout_ranks.count %></td>
     <td><%= court_of_honor.scout_merit_badges.count %></td>
   </tr>
