@@ -109,7 +109,8 @@ class Scout < ActiveRecord::Base
   end
 
   def <=> (scout)
-    last_name <=> scout.last_name || first_name <=> scout.first_name
+    val = last_name <=> scout.last_name
+    val != 0 ? val : first_name <=> scout.first_name
   end
 end
 
