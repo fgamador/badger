@@ -48,7 +48,7 @@
     <td class="actions"><%= link_to 'Add', new_outing_outing_scout_path(@outing) %></td>
   <% end %>
   </tr>
-<% @outing.outing_scouts.each do |os| %>
+<% @outing.outing_scouts.sort {|os1,os2| os1.scout <=> os2.scout }.each do |os| %>
   <tr>
     <td><%= link_to os.scout.name, os.scout %></td>
     <td><%= os.nights_of_camping %></td>

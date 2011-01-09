@@ -18,7 +18,8 @@
     <th>Scout</th>
     <th>Earned</th>
   </tr>
-<% @award.scout_awards.each do |sa| %>
+<!-- TODO active/inactive -->
+<% @award.scout_awards.sort {|sa1,sa2| sa1.scout <=> sa2.scout }.each do |sa| %>
   <tr>
     <td><%= link_to sa.scout.name, sa.scout %></td>
     <td><%= sa.earned %></td>
