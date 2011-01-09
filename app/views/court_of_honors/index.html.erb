@@ -7,6 +7,7 @@
     <th>Eagle</th>
     <th>Ranks</th>
     <th>Merit Badges</th>
+    <th>Awards</th>
   <% if admin? %>
     <td class="actions"><%= link_to 'Add', new_court_of_honor_path %></td>
   <% end %>
@@ -19,6 +20,7 @@
     <td><%= court_of_honor.eagle ? "Y" : "" %></td>
     <td><%= court_of_honor.scout_ranks.count %></td>
     <td><%= court_of_honor.scout_merit_badges.count %></td>
+    <td><%= court_of_honor.scout_awards.count %></td>
   </tr>
 <% end %>
 </table>
