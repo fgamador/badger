@@ -8,6 +8,8 @@ class OutingScoutsController < ApplicationController
     @outing_scout.nights_of_camping = @outing.nights_of_camping
     # TODO active only
     @eligible_scouts = Scout.all.sort - @outing.scouts
+    coh = CourtOfHonor.first_after @outing.date
+    @coh_id = coh ? coh.id : nil
   end
 
   def edit
@@ -22,7 +24,8 @@ class OutingScoutsController < ApplicationController
 
     @outing_scout = @outing.outing_scouts.build(params[:outing_scout])
     if @outing_scout.save
-      court_of_honor = params[:court_of_honor_id] ? CourtOfHonor.find(params[:court_of_honor_id]) : nil
+      court_of_honor = !params[:court_of_honor_id].blank? ?
+        CourtOfHonor.find(params[:court_of_honor_id]) : nil
 
       if params[:award_ids]
         params[:award_ids].each do |id|

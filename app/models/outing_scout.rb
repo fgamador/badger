@@ -16,5 +16,9 @@ class OutingScout < ActiveRecord::Base
   validates_uniqueness_of :scout_id, :scope => :outing_id
   belongs_to :outing
   belongs_to :scout
+
+  def <=> (os)
+    outing.date <=> os.outing.date
+  end
 end
 

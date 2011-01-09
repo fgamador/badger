@@ -19,8 +19,8 @@
   <% end %>
   <div class='field'>
     <%= label_tag :court_of_honor_id %><br />
-    <%= select_tag :court_of_honor_id,
-      options_from_collection_for_select(CourtOfHonor.all(:order => "date DESC"), :id, :name) %>
+    <%= select_tag :court_of_honor_id, "<option></option>".html_safe +
+      options_from_collection_for_select(CourtOfHonor.all(:order => "date DESC"), :id, :name, @coh_id) %>
   </div>
 <% end %>
   <% form_submit_buttons(f, use_save_and_new) %>

@@ -122,7 +122,7 @@
     <td class="actions"><%= link_to 'Add', outings_path %></td>
   <% end %>
   </tr>
-<% @scout.outing_scouts.each do |os| %>
+<% @scout.outing_scouts.sort {|os1,os2| os2.outing.date <=> os1.outing.date }.each do |os| %>
   <tr>
     <td><%= link_to os.outing.name, os.outing %></td>
     <td><%= os.outing.date %></td>

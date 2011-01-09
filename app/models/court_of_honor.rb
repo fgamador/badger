@@ -19,6 +19,15 @@ class CourtOfHonor < ActiveRecord::Base
   has_many :scout_merit_badges, :dependent => :nullify
   has_many :scout_ranks, :dependent => :nullify
 
+  def self.first_after(date)
+    prev = nil;
+    all(:order => "date DESC").each do |coh|
+      return prev if coh.date < date
+      prev = coh
+    end
+    prev
+  end
+
   def unused?
     scout_awards.empty? && scout_merit_badges.empty? && scout_ranks.empty?
   end
