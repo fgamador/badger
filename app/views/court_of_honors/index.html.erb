@@ -18,9 +18,9 @@
     <td><%= link_to court_of_honor.name, court_of_honor %></td>
     <td><%= court_of_honor.date %></td>
     <td><%= court_of_honor.eagle ? "Y" : "" %></td>
-    <td><%= non_zero_or_blank court_of_honor.scout_ranks.count %></td>
-    <td><%= non_zero_or_blank court_of_honor.scout_merit_badges.count %></td>
-    <td><%= non_zero_or_blank court_of_honor.scout_awards.count %></td>
+    <td><%= non_zero_or court_of_honor.scout_ranks.count, "-" %></td>
+    <td><%= non_zero_or court_of_honor.scout_merit_badges.count, "-" %></td>
+    <td><%= non_zero_or court_of_honor.scout_awards.count, "-" %></td>
   </tr>
 <% end %>
 </table>

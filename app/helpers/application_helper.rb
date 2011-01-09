@@ -9,8 +9,8 @@ module ApplicationHelper
     safe_concat "</td>"
   end
 
-  def non_zero_or_blank(num)
-    num != 0 ? num.to_s : ""
+  def non_zero_or(num, s)
+    num != 0 ? num.to_s : s
   end
 
   def form_error_messages(entity, label)
