@@ -8,16 +8,25 @@
     <th>Eagle</th>
   <% end %>
   <% if admin? %>
-    <td class="actions"><%= link_to 'Edit', edit_court_of_honor_path(@court_of_honor) %></td>
-<!--
-    < % if @court_of_honor.unused? %>
-      < %= link_to 'Delete', @court_of_honor,
+    <td class="actions">
+      <%= link_to 'Edit', edit_court_of_honor_path(@court_of_honor) %>
+    <% if @court_of_honor.unused? %>
+      <%= link_to 'Delete', @court_of_honor,
         :confirm => "Delete unused #{@court_of_honor.name}?", :method => :delete %>
-    < % end %>
--->
+    <% end %>
+    </td>
   <% end %>
   </tr>
 </table>
+
+<h2 class="vsep">Ranks</h2>
+
+<% @ranks.each do |rank| %>
+<p>
+  <strong><%= link_to rank.name, rank %>:</strong>
+  <%= @scouts_by_rank[rank].collect {|scout| link_to (h scout.name), scout }.join(", ").html_safe %>
+</p>
+<% end %>
 
 <h2 class="vsep">Merit badges</h2>
 
@@ -25,6 +34,15 @@
 <p>
   <strong><%= link_to merit_badge.name, merit_badge %>:</strong>
   <%= @scouts_by_merit_badge[merit_badge].collect {|scout| link_to (h scout.name), scout }.join(", ").html_safe %>
+</p>
+<% end %>
+
+<h2 class="vsep">Awards</h2>
+
+<% @awards.each do |award| %>
+<p>
+  <strong><%= link_to award.name, award %>:</strong>
+  <%= format_counts(@scout_counts_by_award[award]).join(", ").html_safe %>
 </p>
 <% end %>
 

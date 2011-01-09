@@ -11,9 +11,9 @@ class CourtOfHonorsController < ApplicationController
 
   def show
     @title = @court_of_honor.name
-#    gather_ranks
+    gather_ranks
     gather_merit_badges
-#    gather_awards
+    gather_awards
   end
 
   def new
@@ -60,7 +60,6 @@ class CourtOfHonorsController < ApplicationController
 
   private
 
-=begin
   def gather_ranks
     @scouts_by_rank = {}
     @court_of_honor.scout_ranks.each do |sr|
@@ -75,7 +74,6 @@ class CourtOfHonorsController < ApplicationController
 
     @ranks.sort!
   end
-=end
 
   def gather_merit_badges
     @scouts_by_merit_badge = {}
@@ -92,7 +90,6 @@ class CourtOfHonorsController < ApplicationController
     @merit_badges.sort!
   end
 
-=begin
   def gather_awards
     @scout_counts_by_award = {}
     @court_of_honor.scout_awards.each do |sa|
@@ -101,7 +98,6 @@ class CourtOfHonorsController < ApplicationController
 
     @awards = @scout_counts_by_award.keys.sort!
   end
-=end
 
   def add_to_array(hash, key, element)
     (hash[key] || hash[key] = []) << element
