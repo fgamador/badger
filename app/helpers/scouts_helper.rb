@@ -4,9 +4,9 @@ module ScoutsHelper
     total_class = counts[:total_satisfied] ? "satisfied" : "unsatisfied"
     required_class = counts[:required_satisfied] ? "satisfied" : "unsatisfied"
     satisfied_msg = counts[:total_satisfied] && counts[:required_satisfied] \
-      ? ": satisfies rank requirement" \
+      ? ": satisfies requirement for next rank" \
       : counts[:total_satisfied] || counts[:required_satisfied] \
-        ? ": partially satisfies rank requirement" : ""
+        ? ": partially satisfies requirement for next rank" : ""
 
     safe_concat "<td title='#{counts[:total]} total, #{counts[:required]} eagle-required#{satisfied_msg}'>"
     safe_concat "<span class='#{total_class}'>#{counts[:total]}</span>"
