@@ -57,6 +57,10 @@ td.actions {
   background-color: #CFC;
 }
 
+td.at-rank {
+  font-weight: bold
+}
+
 td.required {
   font-weight: bold
 }
