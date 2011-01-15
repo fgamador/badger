@@ -5,7 +5,9 @@
     <th>Name</th>
     <th>Rank</th>
     <th>Merit Badges</th>
+    <th>Awards</th>
     <th>Nights of Camping</th>
+    <th>Age</th>
     <th>Birthday</th>
   <% if show_inactive? %>
     <th>Active</th>
@@ -23,7 +25,9 @@
     <td><%= link_to scout.name, scout %></td>
     <td><%= scout.rank ? (link_to scout.rank.name, scout.rank) : "" %></td>
     <% td_merit_badge_counts(scout) %>
+    <td><%= scout.awards.size %></td>
     <% td_nights_of_camping_counts(scout) %>
+    <td><%= scout.age %></td>
     <td><%= scout.birthday %></td>
   <% if show_inactive? %>
     <td><%= scout.active ? "Y" : "" %></td>

@@ -24,7 +24,6 @@ class Scout < ActiveRecord::Base
   has_many :outings, :through => :outing_scouts, :order => "date"
   has_many :scout_ranks, :dependent => :destroy
   has_many :ranks, :through => :scout_ranks, :order => "ordinal DESC"
-#  named_scope :active, :conditions => { :active => true }
 
   def add_award(params)
     scout_awards.build(params).save
@@ -36,6 +35,11 @@ class Scout < ActiveRecord::Base
 
   def name
     first_name + " " + last_name
+  end
+
+  def age
+    val = Date.today.year - birthday.year
+    (Date.today < birthday + val.year) ? val - 1 : val
   end
 
   def rank

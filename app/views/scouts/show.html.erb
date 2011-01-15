@@ -6,8 +6,12 @@
     <td><%= @scout.rank ? @scout.rank.name : "" %></td>
     <th>Merit badges:</th>
     <% td_merit_badge_counts(@scout) %>
+    <th>Awards:</th>
+    <td><%= @scout.awards.size %></td>
     <th>Nights of camping:</th>
     <% td_nights_of_camping_counts(@scout) %>
+    <th>Age:</th>
+    <td><%= @scout.age %></td>
     <th>Birthday:</th>
     <td><%= @scout.birthday %></td>
     <th><%= @scout.active ? "Active" : "Inactive" %></th>
