@@ -25,6 +25,16 @@ module ScoutsHelper
     safe_concat "</td>"
   end
 
+  def td_age(scout)
+    safe_concat "<td>"
+    if scout.birthday
+      concat scout.age
+    else
+      concat "-"
+    end
+    safe_concat "</td>"
+  end
+
   def link_to_name_or_blank(obj)
     obj ? link_to(obj.name, obj) : ""
   end

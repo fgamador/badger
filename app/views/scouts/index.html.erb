@@ -27,7 +27,7 @@
     <% td_merit_badge_counts(scout) %>
     <td><%= scout.awards.size %></td>
     <% td_nights_of_camping_counts(scout) %>
-    <td><%= scout.age %></td>
+    <% td_age(scout) %>
     <td><%= scout.birthday %></td>
   <% if show_inactive? %>
     <td><%= scout.active ? "Y" : "" %></td>

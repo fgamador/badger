@@ -38,6 +38,8 @@ class Scout < ActiveRecord::Base
   end
 
   def age
+    return nil unless birthday
+
     val = Date.today.year - birthday.year
     (Date.today < birthday + val.year) ? val - 1 : val
   end
