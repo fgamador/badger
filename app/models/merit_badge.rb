@@ -36,6 +36,10 @@ class MeritBadge < ActiveRecord::Base
     scout_merit_badges.size
   end
 
+  def reference_url_suffix
+    name.gsub(/ /, '_')
+  end
+
   def active?
     scout_merit_badges.index {|smb| smb.scout.active? } != nil
   end

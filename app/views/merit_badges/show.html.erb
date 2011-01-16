@@ -3,6 +3,7 @@
 <table class="detail">
   <tr>
     <% th_merit_badge_eagle_required(@merit_badge) %>
+    <td></td>
   <% if admin? %>
     <td class="actions">
       <%= link_to 'Edit', edit_merit_badge_path(@merit_badge) %>
@@ -12,15 +13,11 @@
     <% end %>
     </td>
   <% end %>
+    <% td_reference_url(@merit_badge.name, @merit_badge.reference_url_suffix) %>
   </tr>
 </table>
 
-<p>
-  (<a href="http://meritbadge.org/wiki/index.php/Boy_Scout_Portal">MeritBadge.Org</a>:
-  <a href="<%= 'http://meritbadge.org/wiki/index.php/' + @merit_badge.name.gsub(/ /, '_') %>"><%= @merit_badge.name %></a>)
-</p>
-
-<table class="listing">
+<table class="listing vsep">
   <tr>
     <th>Scout</th>
     <th>Earned</th>

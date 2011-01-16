@@ -13,6 +13,18 @@ module ApplicationHelper
     num != 0 ? num.to_s : s
   end
 
+  def td_reference_url(label, url_suffix)
+    safe_concat "<td class='reference-url'>"
+    a_reference_url("MeritBadge.Org", "Boy_Scout_Portal")
+    safe_concat ": "
+    a_reference_url(label, url_suffix)
+    safe_concat "</td>"
+  end
+
+  def a_reference_url(label, url_suffix)
+    safe_concat "<a href='http://meritbadge.org/wiki/index.php/#{url_suffix}'>#{label}</a>"
+  end
+
   def form_error_messages(entity, label)
     if entity.errors.any?
       safe_concat "<div id='error_explanation'>"

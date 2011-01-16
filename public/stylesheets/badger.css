@@ -61,6 +61,10 @@ td.at-rank {
   font-weight: bold
 }
 
+td.reference-url {
+  font-style: italic
+}
+
 td.required {
   font-weight: bold
 }

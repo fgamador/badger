@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110109000954) do
+ActiveRecord::Schema.define(:version => 20110116052708) do
 
   create_table "awards", :force => true do |t|
     t.string   "name"
@@ -84,10 +84,11 @@ ActiveRecord::Schema.define(:version => 20110109000954) do
   create_table "ranks", :force => true do |t|
     t.string   "name"
     t.integer  "ordinal"
-    t.integer  "num_merit_badges",   :default => 0
-    t.integer  "num_eagle_required", :default => 0
+    t.integer  "num_merit_badges",     :default => 0
+    t.integer  "num_eagle_required",   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reference_url_suffix"
   end
 
   add_index "ranks", ["name"], :name => "rank_by_name", :unique => true

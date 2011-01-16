@@ -19,6 +19,9 @@
     <% end %>
     </td>
   <% end %>
+  <% if @rank.reference_url_suffix %>
+    <% td_reference_url(@rank.name, @rank.reference_url_suffix) %>
+  <% end %>
   </tr>
 </table>
 
