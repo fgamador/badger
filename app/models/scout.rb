@@ -62,7 +62,7 @@ class Scout < ActiveRecord::Base
 
   def merit_badge_counts
     total = 0
-    required = 0
+    eagle_required = 0
     groups = {}
     scout_merit_badges.each do |smb|
       total += 1
@@ -70,21 +70,25 @@ class Scout < ActiveRecord::Base
         if (smb.merit_badge.group_number)
           if !groups[smb.merit_badge.group_number]
             groups[smb.merit_badge.group_number] = true
-            required += 1
+            eagle_required += 1
           end
         else
-          required += 1
+          eagle_required += 1
         end
       end
     end
 
     nr = next_rank
+    eagle_required_remaining = nr ? nr.num_eagle_required - eagle_required : 0
+    total_remaining = nr ? nr.num_merit_badges - total : 0
+    total_remaining = [total_remaining, eagle_required_remaining].max
+
     {
       :required_for_rank => nr && nr.num_merit_badges > 0,
       :total => total,
-      :total_satisfied => nr && total >= nr.num_merit_badges,
-      :eagle_required => required,
-      :eagle_required_satisfied => nr && required >= nr.num_eagle_required
+      :total_remaining => total_remaining,
+      :eagle_required => eagle_required,
+      :eagle_required_remaining => eagle_required_remaining
     }
   end
 
