@@ -1,10 +1,11 @@
 module ApplicationHelper
+  # TODO rename as td_toggle_show_inactive
   def toggle_show_inactive_td
     safe_concat "<td class='actions'>"
     if show_inactive?
-      safe_concat link_to 'Hide inactive', hide_inactive_modes_path
+      safe_concat link_to('Hide inactive', hide_inactive_modes_path)
     else
-      safe_concat link_to 'Show inactive', show_inactive_modes_path
+      safe_concat link_to('Show inactive', show_inactive_modes_path)
     end
     safe_concat "</td>"
   end

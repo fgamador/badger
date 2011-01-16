@@ -41,5 +41,15 @@ class ApplicationController < ActionController::Base
   def show_inactive?
     @show_inactive
   end
+
+  def add_to_array(hash, key, element)
+    (hash[key] || hash[key] = []) << element
+  end
+
+  def add_to_counts(hash, key, element)
+    counts = hash[key] || hash[key] = {}
+    count = counts[element] || 0
+    counts[element] = count + 1
+  end
 end
 

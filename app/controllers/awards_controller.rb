@@ -11,6 +11,7 @@ class AwardsController < ApplicationController
 
   def show
     @title = @award.name
+    gather_scouts(@award)
   end
 
   def new
@@ -56,6 +57,22 @@ class AwardsController < ApplicationController
   end
 
   private
+
+  def gather_scouts(award)
+    sas = show_inactive? ? award.scout_awards : award.active_scout_awards
+    @dates_by_scout = {}
+    sas.each do |sa|
+      add_to_array(@dates_by_scout, sa.scout, sa.earned)
+    end
+
+    @scouts = []
+    @dates_by_scout.each do |scout,dates|
+      @scouts << scout
+      dates.sort!
+    end
+
+    @scouts.sort!
+  end
 
   def find_award
     @award = Award.find(params[:id])

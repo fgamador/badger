@@ -2,7 +2,9 @@
 
 <table class="detail">
   <tr>
-    <th><%= @award.one_per_scout ? "One per scout" : "Unlimited" %></th>
+  <% if @award.one_per_scout %>
+    <th>One per scout</th>
+  <% end %>
   <% if admin? %>
     <td class="actions"><%= link_to 'Edit', edit_award_path(@award) %></td>
     <% if @award.unused? %>
@@ -19,11 +21,10 @@
     <th>Earned</th>
     <% toggle_show_inactive_td %>
   </tr>
-<% sas = show_inactive? ? @award.scout_awards : @award.active_scout_awards %>
-<% sas.sort {|sa1,sa2| ScoutAward.by_scout_then_earned(sa1, sa2) }.each do |sa| %>
+<% @scouts.each do |scout| %>
   <tr>
-    <td><%= link_to sa.scout.name, sa.scout %></td>
-    <td><%= sa.earned %></td>
+    <td><%= link_to scout.name, scout %></td>
+    <td><%= @dates_by_scout[scout].collect {|date| date.to_s }.join(", ") %></td>
   </tr>
 <% end %>
 </table>
