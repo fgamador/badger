@@ -1,16 +1,25 @@
 module ScoutsHelper
   def td_merit_badge_counts(scout)
     counts = scout.merit_badge_counts
-    total_class = counts[:total_satisfied] ? "satisfied" : "unsatisfied"
-    required_class = counts[:required_satisfied] ? "satisfied" : "unsatisfied"
-    satisfied_msg = counts[:total_satisfied] && counts[:required_satisfied] \
-      ? ": satisfies requirement for next rank" \
-      : counts[:total_satisfied] || counts[:required_satisfied] \
-        ? ": partially satisfies requirement for next rank" : ""
+    if counts[:required_for_rank]
+      total_class = counts[:total_satisfied] ? "satisfied" : "unsatisfied"
+      eagle_required_class = counts[:eagle_required_satisfied] ? "satisfied" : "unsatisfied"
+    else
+      total_class = eagle_required_class = "not-required"
+    end
 
-    safe_concat "<td title='#{counts[:total]} total, #{counts[:required]} eagle-required#{satisfied_msg}'>"
+    if counts[:required_for_rank]
+      satisfied_msg = counts[:total_satisfied] && counts[:eagle_required_satisfied] \
+        ? ": satisfies requirement for next rank" \
+        : counts[:total_satisfied] || counts[:eagle_required_satisfied] \
+          ? ": partially satisfies requirement for next rank" : ""
+    else
+      satisfied_msg = ": not required for next rank"
+    end
+
+    safe_concat "<td title='#{counts[:total]} total, #{counts[:eagle_required]} eagle-required#{satisfied_msg}'>"
     safe_concat "<span class='#{total_class}'>#{counts[:total]}</span>"
-    safe_concat " <span class='#{required_class}'>(#{counts[:required]})</span>"
+    safe_concat " <span class='#{eagle_required_class}'>(#{counts[:eagle_required]})</span>"
     safe_concat "</td>"
   end
 

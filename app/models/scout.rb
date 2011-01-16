@@ -80,10 +80,11 @@ class Scout < ActiveRecord::Base
 
     nr = next_rank
     {
+      :required_for_rank => nr && nr.num_merit_badges > 0,
       :total => total,
       :total_satisfied => nr && total >= nr.num_merit_badges,
-      :required => required,
-      :required_satisfied => nr && required >= nr.num_eagle_required
+      :eagle_required => required,
+      :eagle_required_satisfied => nr && required >= nr.num_eagle_required
     }
   end
 

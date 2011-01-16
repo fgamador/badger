@@ -16,6 +16,10 @@ class MeritBadge < ActiveRecord::Base
   validates_uniqueness_of :name
   has_many :scout_merit_badges, :dependent => :destroy, :order => "earned DESC"
 
+  def self.find_group(group_number)
+    where(["group_number = ?", group_number]).order("name").all 
+  end
+
   def active_scout_merit_badges
     scout_merit_badges.select {|smb| smb.scout.active? }
   end
