@@ -6,7 +6,7 @@ class MeritBadgesController < ApplicationController
 
   def index
     @title = "Merit badges"
-    @merit_badges = MeritBadge.all.sort
+    @merit_badges = MeritBadge.find_active
   end
 
   def show
