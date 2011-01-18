@@ -25,9 +25,9 @@ module ScoutsHelper
   def td_nights_of_camping_counts(scout)
     counts = scout.nights_of_camping_counts
     camping_nights_class = counts[1] >= 20 ? "satisfied" : "unsatisfied"
-    satisfied_msg = counts[1] >= 20 ? ": satisfies requirement" : ""
+    status_msg = counts[1] >= 20 ? ": satisfies requirement" : ": #{20 - counts[1]} more needed"
 
-    safe_concat "<td title='#{counts[0]} total, #{counts[1]} for camping merit badge#{satisfied_msg}'>"
+    safe_concat "<td title='#{counts[0]} total, #{counts[1]} for camping merit badge#{status_msg}'>"
     safe_concat "#{counts[0]}"
     safe_concat " <span class='#{camping_nights_class}'>(#{counts[1]})</span>"
     safe_concat "</td>"
