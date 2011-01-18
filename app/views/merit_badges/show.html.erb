@@ -24,7 +24,7 @@
     <% toggle_show_inactive_td %>
   </tr>
 <% smbs = show_inactive? ? @merit_badge.scout_merit_badges : @merit_badge.active_scout_merit_badges %>
-<% smbs.each do |smb| %>
+<% smbs.sort.each do |smb| %>
   <tr>
     <td><%= link_to smb.scout.name, smb.scout %></td>
     <td><%= smb.earned %></td>
